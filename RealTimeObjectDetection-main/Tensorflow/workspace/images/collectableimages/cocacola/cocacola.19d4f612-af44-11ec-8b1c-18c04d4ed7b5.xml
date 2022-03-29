@@ -1,0 +1,26 @@
+<annotation>
+	<folder>cocacola</folder>
+	<filename>cocacola.19d4f612-af44-11ec-8b1c-18c04d4ed7b5.jpg</filename>
+	<path>C:\Users\Pranav\Projects\SHOP-N-GO\RealTimeObjectDetection-main\Tensorflow\workspace\images\collectableimages\cocacola\cocacola.19d4f612-af44-11ec-8b1c-18c04d4ed7b5.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>640</width>
+		<height>480</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Cocacola</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>265</xmin>
+			<ymin>4</ymin>
+			<xmax>436</xmax>
+			<ymax>440</ymax>
+		</bndbox>
+	</object>
+</annotation>
