@@ -10,6 +10,7 @@ from object_detection.utils import config_util
 import tensorflow as tf
 from tkinter import *
 from PIL import Image, ImageTk
+from Buy import *
 
 WORKSPACE_PATH = 'Tensorflow/workspace'
 SCRIPTS_PATH = 'Tensorflow/scripts'
@@ -78,12 +79,18 @@ category_index = label_map_util.create_category_index_from_labelmap(ANNOTATION_P
 
 root = Tk()
 root.geometry("1500x600")
+root.title("Shop-N-Go")
 root.config(bg="black")
-Label(root, text="test one", bg="black", fg="red").pack()
+Label(root, text="Welcome to Shop-N-Go", font=('Consoles', 25), bg="black", fg="red").grid(row=0, column=0)
 f1 = LabelFrame(root, bg="red")
-f1.pack()
+f1.grid(row=1, column=0)
 L1 = Label(f1, bg="red")
-L1.pack()
+L1.grid(row=1, column=0)
+my_listbox = Listbox(root, bg="gray", width=30, height=15, font=('Consoles', 15))
+my_listbox.grid(row=1, column=2)
+Button(root, text="Add Item To list", bg='black', fg='white', command=additem).grid(row=2, column=2)
+l2 = Label(root, text="Welcome to Shop-N-Go", font=('Consoles', 25), bg="black", fg="red")
+l2.grid(row=3, column=2)
 
 
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
@@ -124,6 +131,11 @@ while True:
     final_img = ImageTk.PhotoImage(Image.fromarray(final_img))
     L1['image'] = final_img
     root.update()
+
+    score = float((detections['detection_scores'])[0])
+    if score > 0.50:
+        add_to_list((detections['detection_classes'] + label_id_offset)[0], l2)
+
     # print((detections['detection_classes']+label_id_offset)[0])
     # print((detections['detection_scores'])[0])
     if cv2.waitKey(1) & 0xFF == ord('q'):
