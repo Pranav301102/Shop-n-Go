@@ -1,0 +1,26 @@
+<annotation>
+	<folder>Eraser</folder>
+	<filename>Eraser.638cd1b0-bbd5-11ec-96e1-18c04d4ed7b5.jpg</filename>
+	<path>C:\Users\Pranav\Projects\SHOP-N-GO\RealTimeObjectDetection-main\Tensorflow\workspace\images\collectableimages\Eraser\Eraser.638cd1b0-bbd5-11ec-96e1-18c04d4ed7b5.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>640</width>
+		<height>480</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Eraser</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>260</xmin>
+			<ymin>139</ymin>
+			<xmax>425</xmax>
+			<ymax>230</ymax>
+		</bndbox>
+	</object>
+</annotation>

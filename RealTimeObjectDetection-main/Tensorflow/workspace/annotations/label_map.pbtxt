@@ -1,0 +1,20 @@
+item { 
+	name:'Book'
+	id:1
+}
+item { 
+	name:'Cocacola'
+	id:2
+}
+item { 
+	name:'Eraser'
+	id:3
+}
+item { 
+	name:'Pen'
+	id:4
+}
+item { 
+	name:'Sizer'
+	id:5
+}

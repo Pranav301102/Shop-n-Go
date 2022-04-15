@@ -1,0 +1,26 @@
+<annotation>
+	<folder>Sizer</folder>
+	<filename>Sizer.a6a763b4-bbd5-11ec-a2f8-18c04d4ed7b5.jpg</filename>
+	<path>C:\Users\Pranav\Projects\SHOP-N-GO\RealTimeObjectDetection-main\Tensorflow\workspace\images\collectableimages\Sizer\Sizer.a6a763b4-bbd5-11ec-a2f8-18c04d4ed7b5.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>640</width>
+		<height>480</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Sizer</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>169</xmin>
+			<ymin>77</ymin>
+			<xmax>368</xmax>
+			<ymax>415</ymax>
+		</bndbox>
+	</object>
+</annotation>
