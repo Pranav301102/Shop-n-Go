@@ -7,18 +7,18 @@ product_info = [{1: ['Book', 30]},
                 {4: ['Pen', 30]},
                 {5: ['Sizer', 30]}]
 
+from tkinter import END
 
-def additem():
-    pass
+def add_item(my_listbox):
+   my_listbox.insert("end", "item1", "item2", "item3", "item4", "item5")
 
+def remove_items(my_listbox):
+    for item in my_listbox.curselection():
+        my_listbox.delete(item)
+        my_listbox.insert("end", "foo")
 
-def remove_items():
-    pass
-
-
-def clear_list():
-    pass
-
+def clear_list(my_listbox):
+  my_listbox.delete(0, END)
 
 def add_to_list(label_id, label):
     global lastId
