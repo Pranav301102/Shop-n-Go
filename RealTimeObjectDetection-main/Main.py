@@ -10,6 +10,7 @@ from object_detection.utils import config_util
 import tensorflow as tf
 from tkinter import *
 from PIL import Image, ImageTk
+
 from Buy import *
 
 WORKSPACE_PATH = 'Tensorflow/workspace'
@@ -22,7 +23,7 @@ PRETRAINED_MODEL_PATH = WORKSPACE_PATH + '/pre-trained-models'
 
 CHECKPOINT_PATH = MODEL_PATH + '/my_ssd_mobnet/'
 labels = [{'name': 'Book', 'id': 1}, {'name': 'Cocacola', 'id': 2}, {'name': 'Eraser', 'id': 3},
-          {'name': 'Pen', 'id': 4}, {'name': 'Sizer', 'id': 5}]
+          {'name': 'Pen', 'id': 4}, {'name': 'Scissors', 'id': 5}]
 CUSTOM_MODEL_NAME = 'my_ssd_mobnet'
 
 CONFIG_PATH = MODEL_PATH + '/' + CUSTOM_MODEL_NAME + '/pipeline.config'
@@ -77,6 +78,30 @@ def detect_fn(image):
 
 category_index = label_map_util.create_category_index_from_labelmap(ANNOTATION_PATH + '/label_map.pbtxt')
 
+
+def add_item():
+    items = get_item()
+    my_listbox.insert(END, items)
+
+
+def remove_items():
+    for item in my_listbox.curselection():
+        clear_bag(item-1)
+        my_listbox.delete(item)
+
+
+def clear_list():
+    for item in range(my_listbox.size()-1):
+        clear_bag(item)
+    my_listbox.delete(1, END)
+
+
+def total_ammount():
+    sum = get_sum()
+    l3["text"] = "Total Ammount = " + str(sum)
+
+
+
 root = Tk()
 root.geometry("1500x600")
 root.title("Shop-N-Go")
@@ -88,10 +113,13 @@ L1 = Label(f1, bg="red")
 L1.grid(row=1, column=0)
 my_listbox = Listbox(root, bg="gray", width=30, height=15, font=('Consoles', 15))
 my_listbox.grid(row=1, column=2)
-Button(root, text="Add Item To list", bg='black', fg='white', command= add_item(my_listbox)).grid(row=2, column=2)
-Button(root, text="Remove From list", bg='black', fg='white', command= remove_items(my_listbox)).grid(row=3, column=2)
-Button(root, text="Clear list", bg='black', fg='white', command= clear_list(my_listbox)).grid(row=4, column=2)
-
+my_listbox.insert(0, "Item       |Price")
+Button(root, text="Add Item To list", bg='black', fg='white', command=add_item).grid(row=2, column=2)
+Button(root, text="Remove From list", bg='black', fg='white', command=remove_items).grid(row=2, column=6)
+Button(root, text="Clear list", bg='black', fg='white', command=clear_list).grid(row=2, column=4)
+Button(root, text="Get Bill", bg='black', fg='white', command=total_ammount).grid(row=2, column=5)
+l3 = Label(root, text="Total Ammount", font=('Consoles', 25), bg="black", fg="red")
+l3.grid(row=3, column=3)
 l2 = Label(root, text="Welcome to Shop-N-Go", font=('Consoles', 25), bg="black", fg="red")
 l2.grid(row=3, column=2)
 
@@ -128,7 +156,7 @@ while True:
         min_score_thresh=0.5,
         agnostic_mode=False)
 
-    #cv2.imshow('object detection', cv2.resize(image_np_with_detections, (800, 600)))
+    # cv2.imshow('object detection', cv2.resize(image_np_with_detections, (800, 600)))
     final_img = cv2.cvtColor(image_np_with_detections, cv2.COLOR_BGR2RGB)
     final_img = ImageTk.PhotoImage(Image.fromarray(final_img))
     L1['image'] = final_img
@@ -136,7 +164,7 @@ while True:
 
     score = float((detections['detection_scores'])[0])
     if score > 0.50:
-        add_to_list((detections['detection_classes'] + label_id_offset)[0], l2)
+        add_to_list((detections['detection_classes'])[0], l2)
 
     # print((detections['detection_classes']+label_id_offset)[0])
     # print((detections['detection_scores'])[0])

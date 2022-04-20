@@ -1,33 +1,42 @@
+total = 0
 lastId = 0
-item = []
-NoOfItems = []
-product_info = [{1: ['Book', 30]},
-                {2: ['Cocacola', 30]},
-                {3: ['Eraser', 30]},
-                {4: ['Pen', 30]},
-                {5: ['Sizer', 30]}]
+sumOfItem = []
+ItemsInBag = []
+product_info = [['Book       |30', 30],
+                ['Cocacola   |30', 30],
+                ['Eraser     |30', 30],
+                ['Pen        |30', 30],
+                ['Scissors   |30', 30]]
 
-from tkinter import END
 
-def add_item(my_listbox):
-   my_listbox.insert("end", "item1", "item2", "item3", "item4", "item5")
+def get_item():
+    ItemsInBag.insert(0, lastId)
+    sumOfItem.insert(0, product_info[lastId][1])
+    print(ItemsInBag)
+    print(sumOfItem)
+    return product_info[lastId][0]
 
-def remove_items(my_listbox):
-    for item in my_listbox.curselection():
-        my_listbox.delete(item)
-        my_listbox.insert("end", "foo")
 
-def clear_list(my_listbox):
-  my_listbox.delete(0, END)
+def clear_bag(item):
+    try:
+        ItemsInBag.pop(item)
+        sumOfItem.pop(item)
+    except IndexError:
+        ItemsInBag.pop()
+        sumOfItem.pop()
+    print(ItemsInBag)
+    print(sumOfItem)
+
+
+def get_sum():
+    total = 0
+    for item in range(0, len(sumOfItem)):
+        total = total + sumOfItem[item]
+    return total
+
 
 def add_to_list(label_id, label):
     global lastId
     if label_id != lastId:
-        NoOfItems.insert(0, label_id)
         lastId = label_id
-        item = product_info[label_id]
-        print(item)
-        label["text"] = label_id
-
-    if len(NoOfItems) > 20:
-        NoOfItems.pop()
+        label["text"] = product_info[label_id][0]
