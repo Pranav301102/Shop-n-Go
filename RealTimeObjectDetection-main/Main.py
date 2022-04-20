@@ -10,7 +10,6 @@ from object_detection.utils import config_util
 import tensorflow as tf
 from tkinter import *
 from PIL import Image, ImageTk
-
 from Buy import *
 
 WORKSPACE_PATH = 'Tensorflow/workspace'
@@ -86,20 +85,19 @@ def add_item():
 
 def remove_items():
     for item in my_listbox.curselection():
-        clear_bag(item-1)
+        clear_bag(item - 1)
         my_listbox.delete(item)
 
 
 def clear_list():
-    for item in range(my_listbox.size()-1):
+    for item in range(my_listbox.size() - 1):
         clear_bag(item)
     my_listbox.delete(1, END)
 
 
-def total_ammount():
-    sum = get_sum()
-    l3["text"] = "Total Ammount = " + str(sum)
-
+def total_amount():
+    amount = get_sum()
+    l3["text"] = "Total Amount = " + str(amount)
 
 
 root = Tk()
@@ -117,7 +115,7 @@ my_listbox.insert(0, "Item       |Price")
 Button(root, text="Add Item To list", bg='black', fg='white', command=add_item).grid(row=2, column=2)
 Button(root, text="Remove From list", bg='black', fg='white', command=remove_items).grid(row=2, column=6)
 Button(root, text="Clear list", bg='black', fg='white', command=clear_list).grid(row=2, column=4)
-Button(root, text="Get Bill", bg='black', fg='white', command=total_ammount).grid(row=2, column=5)
+Button(root, text="Get Bill", bg='black', fg='white', command=total_amount).grid(row=2, column=5)
 l3 = Label(root, text="Total Ammount", font=('Consoles', 25), bg="black", fg="red")
 l3.grid(row=3, column=3)
 l2 = Label(root, text="Welcome to Shop-N-Go", font=('Consoles', 25), bg="black", fg="red")
