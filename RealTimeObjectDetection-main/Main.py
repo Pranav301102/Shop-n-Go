@@ -10,7 +10,7 @@ from object_detection.utils import config_util
 import tensorflow as tf
 from tkinter import *
 from PIL import Image, ImageTk
-from Buy import *
+from data import *
 
 WORKSPACE_PATH = 'Tensorflow/workspace'
 SCRIPTS_PATH = 'Tensorflow/scripts'
@@ -101,7 +101,7 @@ def total_amount():
 
 
 root = Tk()
-root.geometry("1500x600")
+#root.geometry("1500x600")
 root.title("Shop-N-Go")
 root.config(bg="black")
 Label(root, text="Welcome to Shop-N-Go", font=('Consoles', 25), bg="black", fg="red").grid(row=0, column=0)
@@ -109,17 +109,21 @@ f1 = LabelFrame(root, bg="red")
 f1.grid(row=1, column=0)
 L1 = Label(f1, bg="red")
 L1.grid(row=1, column=0)
+f2 = Frame(root, bg="black")
+f3 = Frame(root, bg="black")
+f2.grid(row=0, column=2)
+f3.grid(row=3, column=2)
 my_listbox = Listbox(root, bg="gray", width=30, height=15, font=('Consoles', 15))
-my_listbox.grid(row=1, column=2)
-my_listbox.insert(0, "Item       |Price")
-Button(root, text="Add Item To list", bg='black', fg='white', command=add_item).grid(row=2, column=2)
-Button(root, text="Remove From list", bg='black', fg='white', command=remove_items).grid(row=2, column=6)
-Button(root, text="Clear list", bg='black', fg='white', command=clear_list).grid(row=2, column=4)
-Button(root, text="Get Bill", bg='black', fg='white', command=total_amount).grid(row=2, column=5)
-l3 = Label(root, text="Total Ammount", font=('Consoles', 25), bg="black", fg="red")
-l3.grid(row=3, column=3)
-l2 = Label(root, text="Welcome to Shop-N-Go", font=('Consoles', 25), bg="black", fg="red")
-l2.grid(row=3, column=2)
+my_listbox.grid(row=1, column=2, sticky= "nsew")
+my_listbox.insert(0, "Item        |Price")
+Button(f2, text="Add Item To list", bg='black', fg='white', command=add_item).grid(row=0, column=1)
+Button(f3, text="Remove From list", bg='black', fg='white', command=remove_items).grid(row=0, column=0)
+Button(f3, text="Clear list", bg='black', fg='white', command=clear_list).grid(row=0, column=1)
+Button(f3, text="Get Bill", bg='black', fg='white', command=total_amount).grid(row=0, column=2)
+l3 = Label(f3, text="Total Ammount", font=('Consoles', 20), bg="black", fg="red")
+l3.grid(row=1, column=0)
+l2 = Label(f2, text="item", font=('Consoles', 25), bg="black", fg="red")
+l2.grid(row=0, column=0, sticky ="nsew")
 
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))

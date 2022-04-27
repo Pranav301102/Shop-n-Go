@@ -2,11 +2,11 @@ total = 0
 lastId = 0
 sumOfItem = []
 ItemsInBag = []
-product_info = [['Book       |30', 30],
-                ['Cocacola   |30', 30],
-                ['Eraser     |30', 30],
-                ['Pen        |30', 30],
-                ['Scissors   |30', 30]]
+product_info = [['Book       |40', 40],
+                ['Cocacola   |20', 20],
+                ['Eraser     |10', 10],
+                ['Pen        |15', 15],
+                ['Scissors   |60', 60]]
 
 
 def get_item():
@@ -39,4 +39,5 @@ def add_to_list(label_id, label):
     global lastId
     if label_id != lastId:
         lastId = label_id
-        label["text"] = product_info[label_id][0]
+        item = product_info[label_id][0].split(" ", 1)
+        label["text"] = item[0]
