@@ -24,7 +24,43 @@ const Navbar = () => {
       </section>
       {isScanPage ? null : (
         <section className="menu">
-          <AiOutlineMenu />
+          <nav>
+            <ul>
+              <li>
+                <Link className="link" to={"/"}>
+                  Home
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link className="link" to={"/main"}>
+                  Scan
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link className="link" to={"/payment"}>
+                  Payment
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link className="link" to={"/login"}>
+                  Login
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link className="link" to={"/signup"}>
+                  Sign Up
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </section>
       )}
     </NavContainer>
@@ -41,6 +77,21 @@ const NavContainer = styled.nav`
   padding: 0 4rem;
   & .menu {
     font-size: 2rem;
+
+    nav {
+      display: flex;
+      ul {
+        list-style: none;
+        font-size: 1rem;
+        li {
+          .link {
+            color: inherit;
+            font-weight: bold;
+            text-decoration: none;
+          }
+        }
+      }
+    }
   }
   .home-link {
     color: inherit;

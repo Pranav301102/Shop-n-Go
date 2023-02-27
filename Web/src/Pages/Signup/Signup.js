@@ -1,56 +1,3 @@
-// import React from "react";
-// import styled from "styled-components";
-
-// const Login = () => {
-//   return (
-//     <FormContainer>
-//       <h3>Login</h3>
-//       <div className="mb-3">
-//         <label>Email address</label>
-//         <input
-//           type="email"
-//           className="form-control"
-//           placeholder="Enter email"
-//         />
-//       </div>
-//       <div className="mb-3">
-//         <label>Password</label>
-//         <input
-//           type="password"
-//           className="form-control"
-//           placeholder="Enter password"
-//         />
-//       </div>
-//       <div className="mb-3">
-//         <div className="custom-control custom-checkbox">
-//           <input
-//             type="checkbox"
-//             className="custom-control-input"
-//             id="customCheck1"
-//           />
-//           <label className="custom-control-label" htmlFor="customCheck1">
-//             Remember me
-//           </label>
-//         </div>
-//       </div>
-//       <div className="d-grid">
-//         <button type="submit" className="btn btn-primary">
-//           Submit
-//         </button>
-//       </div>
-//       <p className="forgot-password text-right">
-//         Forgot <a href="#">password?</a>
-//       </p>
-//     </FormContainer>
-//   );
-// };
-
-// export default Login;
-
-// const FormContainer = styled.form`
-
-// `;
-
 import React, { useRef, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -152,42 +99,131 @@ function Overlay() {
   return (
     <Main>
       <Container>
-        <Right>
-          <Form>
-            <form>
-              <h2>Login</h2>
-              <div className="mb-3">
-                <label>Email address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Enter email"
-                />
-              </div>
-              <div className="mb-3">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter password"
-                />
-              </div>
-              <div className="d-grid">
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-              </div>
-              <p className="forgot-password text-right">
-                Forgot <a href="#">password?</a>
-              </p>
-            </form>
-          </Form>
-        </Right>
         <Left>
           <BgImg>
             <img src="/bg-banner.webp" alt="stock" />
           </BgImg>
         </Left>
+        <Right>
+          <h2>Sign UP</h2>
+          <Form>
+            <form>
+              {!sign ? (
+                <>
+                  <div>
+                    <label htmlFor="name">Enter name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      placeholder="Enter name..."
+                      value={formData.name}
+                      onChange={handlerForm}
+                      autoComplete="off"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email">Enter Email</label>
+                    <input
+                      type="text"
+                      name="email"
+                      id="email"
+                      placeholder="Enter email..."
+                      value={formData.email}
+                      onChange={handlerForm}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="address">Enter number</label>
+                    <input
+                      type="text"
+                      name="address"
+                      id="address"
+                      placeholder="address..."
+                      value={formData.address}
+                      onChange={handlerForm}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="password">Enter Password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="Enter password..."
+                      value={formData.password}
+                      onChange={handlerForm}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="Confirmpassword">Enter Password</label>
+                    <input
+                      type="password"
+                      name="Confirmpassword"
+                      id="Confirmpassword"
+                      placeholder="Enter password..."
+                      value={formData.Confirmpassword}
+                      onChange={handlerForm}
+                      autoComplete="off"
+                    />
+                  </div>
+                  <button type="submit" onClick={handlerSubmit}>
+                    SIGN UP
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <label htmlFor="emailID">Enter Email</label>
+                    <input
+                      type="text"
+                      name="emailID"
+                      id="emailID"
+                      placeholder="Enter email..."
+                      value={signinData.emailID}
+                      onChange={handleSignin}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="passwordID">Enter Password</label>
+                    <input
+                      type="password"
+                      name="passwordID"
+                      id="passwordID"
+                      placeholder="Enter password..."
+                      value={signinData.passwordID}
+                      onChange={handleSignin}
+                    />
+                  </div>
+                  <button type="submit" onClick={SignIN}>
+                    SUBMIT
+                  </button>
+                </>
+              )}
+            </form>
+            <p>
+              {sign ? (
+                <p>
+                  Don't have account
+                  <Btn onClick={() => setSign(!sign)}> Sign UP </Btn>{" "}
+                </p>
+              ) : (
+                <p>
+                  Already have account{" "}
+                  <Btn onClick={() => setSign(!sign)}> Sign In </Btn>{" "}
+                </p>
+              )}
+            </p>
+          </Form>
+        </Right>
       </Container>
     </Main>
   );
@@ -259,7 +295,6 @@ const Form = styled.div`
     margin-top: 10px;
     button {
       padding: 15px 0;
-      width: 100%;
       color: black;
       border: none;
       outline: none;

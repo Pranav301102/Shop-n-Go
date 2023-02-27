@@ -1,33 +1,18 @@
 import React from "react";
+//import { Gradient } from "../lib/gradient";
 import styled from "styled-components";
-
+import "../index.css";
 const Background = () => {
+  // useLayoutEffect(() => {
+  //   const gradient = new Gradient();
+  //   gradient.initGradient("#gradient-canvas");
+  // }, []);
+
+  // const gradient = new Gradient();
+  // gradient.initGradient("#gradient-canvas");
   return (
     <BackgroundContainer>
-      {/* <svg
-        id="sw-js-blob-svg"
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {" "}
-        <defs>
-          {" "}
-          <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">
-            {" "}
-            <stop id="stop1" stop-color="white" offset="0%"></stop>{" "}
-            <stop id="stop2" stop-color="white" offset="100%"></stop>{" "}
-          </linearGradient>{" "}
-        </defs>{" "}
-        <path
-          fill="url(#sw-gradient)"
-          d="M14.5,-22.7C19.4,-19.4,24.4,-16.4,24.3,-12.3C24.3,-8.3,19.2,-3.1,16.7,1.2C14.3,5.6,14.4,9.1,13.2,12.5C11.9,15.8,9.2,19,6.1,19.2C3.1,19.3,-0.4,16.3,-6,16.5C-11.6,16.7,-19.4,20.1,-22.5,18.4C-25.6,16.7,-24.1,10,-25.5,3.3C-27,-3.3,-31.5,-9.9,-29.3,-12.9C-27.2,-16,-18.5,-15.7,-12.5,-18.4C-6.5,-21.2,-3.3,-27.2,0.8,-28.3C4.8,-29.5,9.6,-26,14.5,-22.7Z"
-          width="100%"
-          height="100%"
-          transform="translate(50 50)"
-          stroke-width="0"
-          style={{ transition: "all 0.3s ease 0s;" }}
-        ></path>
-      </svg> */}
+      {/* <canvas id="gradient-canvas" data-transition-in /> */}
       <svg
         id="sw-js-blob-svg"
         viewBox="0 0 100 100"
@@ -70,4 +55,12 @@ const BackgroundContainer = styled.article`
     transform: translateX(-25vh) translateY(-30vh) scale(1.5);
     z-index: -1000;
   }
+  /* & > #gradient-canvas {
+    width: 100%;
+    height: 100%;
+    --gradient-color-1: #c3e4ff;
+    --gradient-color-2: #6ec3f4;
+    --gradient-color-3: #eae2ff;
+    --gradient-color-4: #b9beff;
+  } */
 `;

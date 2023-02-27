@@ -123,7 +123,7 @@ function Overlay() {
     });
   };
 
-  const SignIN = (e) => {
+  const SignUp = (e) => {
     e.preventDefault();
     console.log(signinData);
     console.log("sign in");
@@ -193,7 +193,7 @@ function Overlay() {
   );
 }
 
-const Sign = () => {
+const Login = () => {
   return <Overlay />;
 };
 
@@ -325,4 +325,4 @@ const Btn = styled.button`
   font-size: 15px;
 `;
 
-export default Sign;
+export default Login;

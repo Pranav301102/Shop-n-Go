@@ -1,4 +1,3 @@
-// Import dependencies
 import React, { lazy, Suspense } from "react";
 import * as tf from "@tensorflow/tfjs";
 // 1. TODO - Import required model here
@@ -10,6 +9,7 @@ import { model } from "@tensorflow/tfjs";
 // e.g. import { drawRect } from "./utilities";
 import { drawRect } from "./Components/utilities";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AiOutlineMenu } from "react-icons/ai";
 
 import styled from "styled-components";
 
@@ -17,12 +17,13 @@ import Navbar from "./Components/Navbar";
 import Background from "./Components/Background";
 import Loader from "./Components/Loader";
 
-import Main from "./Pages/main";
-import Home from "./Pages/home";
-import Scan from "./Pages/scan";
-import Payment from "./Pages/payment";
-import SignUp from "./Pages/signup";
-import Login from "./Pages/login";
+import Main from "./Pages/main/Index";
+import Home from "./Pages/home/Home";
+import Scan from "./Pages/scan/Scan";
+import Payment from "./Pages/payment/Payment";
+import SignUp from "./Pages/signup/Signup";
+import Login from "./Pages/login/Login";
+import Admin from "./Pages/admin";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/scan" element={<Scan />} />
               <Route path="/payment" element={<Payment />} />
+              <Route path="/admin" element={<Admin />} />
             </Routes>
           </Suspense>
         </Router>
