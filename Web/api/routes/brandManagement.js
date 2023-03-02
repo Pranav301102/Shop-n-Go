@@ -13,7 +13,7 @@ const databaseConnection = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PA
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   operatorsAliases: false,
-
+  port : dbConfig.port,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -23,7 +23,7 @@ const databaseConnection = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PA
 });
 
 var Product = databaseConnection.define(
-  "Product",
+  "products",
   {
     Prod_ID: {
       type: Sequelize.UUID,
@@ -33,6 +33,18 @@ var Product = databaseConnection.define(
     },
     Prod_Name: {
       type: Sequelize.STRING(50),
+      allowNull: true,
+    },
+    Prod_Price: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+    },
+    Prod_Qty: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+    },
+    Prod_Image: {
+      type: Sequelize.TEXT,
       allowNull: true,
     },
     isDeleted: Sequelize.BOOLEAN,

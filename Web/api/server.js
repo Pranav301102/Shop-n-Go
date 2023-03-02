@@ -8,7 +8,7 @@ const databaseConnection = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PA
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   operatorsAliases: false,
-
+  port : dbConfig.port,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -32,4 +32,4 @@ app.use("/api/brandmanagement", brandManagement);
 // app.use("/api/locationmanagement", locationManagement);
 
 app.listen(PORT);
-console.log("server is running on http://127.0.0.1:" + PORT);
+console.log("sRTerver is running on http://127.0.0.1:" + PORT);
