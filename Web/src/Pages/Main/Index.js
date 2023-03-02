@@ -91,41 +91,69 @@ function Main() {
     runCoco();
   }, []);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Webcam
-          ref={webcamRef}
-          muted={true}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
-        />
 
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 8,
-            width: 640,
-            height: 480,
-          }}
-        />
-      </header>
-    </div>
+  const [quantity, setQuantity] = useState(1);
+
+  const inc = () => {
+    setQuantity(quantity + 1);
+  }
+
+  const dec = () => {
+    setQuantity(quantity - 1);
+  }
+  return (
+    <>
+      <div className="App">
+        <header className="App-header">
+          <Webcam
+            ref={webcamRef}
+            muted={true}
+            style={{
+              position: "absolute",
+              marginLeft: "50px",
+              marginRight: "auto",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+              zindex: 9,
+              width: 640,
+              height: 480,
+            }}
+          />
+          <div className="details" >
+            <div className="right" >
+              <div>Name:</div>
+              <div>Price:</div>
+              <div className="quantity" >
+                <div>Quantity:</div>
+                <button onClick={dec} className="dec">
+                  -
+                </button>
+                <input type="text" value={quantity}></input>
+                <button onClick={inc} className="inc">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+          <canvas
+            ref={canvasRef}
+            style={{
+              position: "absolute",
+              marginLeft: "50px",
+              marginRight: "auto",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+              zindex: 8,
+              width: 640,
+              height: 480,
+            }}
+          />
+
+        </header>
+      </div>
+    </>
   );
 }
 

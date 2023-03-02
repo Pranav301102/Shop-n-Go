@@ -21,10 +21,9 @@ import Main from "./Pages/Main/Index";
 import Home from "./Pages/Home";
 import Scan from "./Pages/Scan";
 import Payment from "./Pages/Payment";
-import SignUp from "./Pages/Signup";
+import SignUp from "./Pages/Signup/Signup";
 import Login from "./Pages/login/Login";
 import Admin from "./Pages/admin";
-
 function App() {
   return (
     <AppContainer>

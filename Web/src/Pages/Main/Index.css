@@ -1,0 +1,36 @@
+.details {
+    /* border: 1px solid red; */
+    position: absolute;
+    /* left: 400px; */
+    right: 0%;
+    top: 10%;
+    width: 700px;
+    height: 700px;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+}
+.right div{
+    /* border:1px solid red; */
+    /* display: inline-block; */
+    width: 150px;
+}
+.inc{
+    width: 30px;
+    height: 20px;
+}
+.dec{
+    width: 30px;
+    height: 20px;
+}
+.quantity{
+    /* border: 1px solid red; */
+    width: 200px;
+    /* display: inline-block; */
+    height: 100px;
+}
+.quantity input{
+    width: 50px;
+}
