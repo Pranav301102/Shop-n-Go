@@ -17,11 +17,11 @@ import Navbar from "./Components/Navbar";
 import Background from "./Components/Background";
 import Loader from "./Components/Loader";
 
-import Main from "./Pages/main/Index";
-import Home from "./Pages/home/Home";
-import Scan from "./Pages/scan/Scan";
-import Payment from "./Pages/payment/Payment";
-import SignUp from "./Pages/signup/Signup";
+import Main from "./Pages/Main/Index";
+import Home from "./Pages/Home";
+import Scan from "./Pages/Scan";
+import Payment from "./Pages/Payment";
+import SignUp from "./Pages/Signup";
 import Login from "./Pages/login/Login";
 import Admin from "./Pages/admin";
 
