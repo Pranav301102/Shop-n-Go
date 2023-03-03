@@ -21,10 +21,10 @@ import Main from "./Pages/Main/Index";
 import Home from "./Pages/Home";
 import Scan from "./Pages/Scan";
 import Payment from "./Pages/Payment";
-import SignUp from "./Pages/Signup";
+import SignUp from "./Pages/Signup/Signup";
 import Login from "./Pages/login/Login";
 import Admin from "./Pages/admin";
-
+import AllProd from "./Pages/Cart/AllProd";
 function App() {
   return (
     <AppContainer>
@@ -43,6 +43,7 @@ function App() {
               <Route path="/scan" element={<Scan />} />
               <Route path="/payment" element={<Payment />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/cart" element={<AllProd />} />
             </Routes>
           </Suspense>
         </Router>

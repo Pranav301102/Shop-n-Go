@@ -35,6 +35,13 @@ const Navbar = () => {
             <ul>
               <li>
                 <Link className="link" to={"/main"}>
+                  Main
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link className="link" to={"/main"}>
                   Scan
                 </Link>
               </li>
@@ -43,6 +50,13 @@ const Navbar = () => {
               <li>
                 <Link className="link" to={"/payment"}>
                   Payment
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link className="link" to={"/cart"}>
+                  Cart
                 </Link>
               </li>
             </ul>
