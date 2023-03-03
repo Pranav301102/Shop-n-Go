@@ -143,7 +143,7 @@ router.get("/testconnection", function (request, response) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  response.send("Brand Management Test");
+  response.send("Product Management Test");
 });
 
 //to export the class
