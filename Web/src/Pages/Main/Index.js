@@ -122,16 +122,24 @@ function Main() {
           />
           <div className="details" >
             <div className="right" >
-              <div>Name:</div>
-              <div>Price:</div>
-              <div className="quantity" >
-                <div>Quantity:</div>
-                <button onClick={dec} className="dec">
-                  -
+              <div>Name: Item1</div>
+              <div>Price: 500</div>
+              <div class="_p-qty">
+                <span>Add Quantity</span>
+                <div class="value-button decrease_" id="" value="Decrease Value">-</div>
+                <input type="number" name="qty" id="number" value="1" />
+                <div class="value-button increase_" id="" value="Increase Value">+</div>
+              </div>
+            </div>
+
+
+            <div className="buttom">
+              <div class="_p-add-cart">
+                <button class="btn-theme btn buy-btn" tabindex="0">
+                  <i class="fa fa-shopping-cart"></i> Buy Now
                 </button>
-                <input type="text" value={quantity}></input>
-                <button onClick={inc} className="inc">
-                  +
+                <button class="btn-theme btn btn-success" tabindex="0">
+                  <i class="fa fa-shopping-cart"></i> Add to Cart
                 </button>
               </div>
             </div>
