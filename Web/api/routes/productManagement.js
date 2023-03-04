@@ -27,7 +27,7 @@ var Product = databaseConnection.define(
   {
     Prod_ID: {
       type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
+      defaultValue: Sequelize.UUIDV1,
       allowNull: false,
       primaryKey: true,
     },
