@@ -1,6 +1,7 @@
 var dbConfig = require("./credentials");
 const express = require("express");
 var Sequelize = require("sequelize");
+var brandManagement = require("./routes/productManagement");
 const app = express(); 
 const PORT = 8085;
 
@@ -8,7 +9,7 @@ const databaseConnection = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PA
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   operatorsAliases: false,
-
+  port : dbConfig.port,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -19,17 +20,11 @@ const databaseConnection = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PA
 
 
 app.get("/", function (request, response) {
-  response.send("Welcome to Keijaoh Tutorials!");
+  response.send("Server is online!");
 });
 
+app.use("/api/productmanagement", brandManagement);
 
-var brandManagement = require("./routes/brandManagement");
-// var categoriesManagement = require("./routes/categoriesManagement");
-// var locationManagement = require("./routes/locationManagement");
-
-app.use("/api/brandmanagement", brandManagement);
-// app.use("/api/categoriesmanagement", categoriesManagement);
-// app.use("/api/locationmanagement", locationManagement);
 
 app.listen(PORT);
 console.log("server is running on http://127.0.0.1:" + PORT);

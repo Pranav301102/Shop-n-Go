@@ -91,41 +91,77 @@ function Main() {
     runCoco();
   }, []);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Webcam
-          ref={webcamRef}
-          muted={true}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
-        />
 
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 8,
-            width: 640,
-            height: 480,
-          }}
-        />
-      </header>
-    </div>
+  const [quantity, setQuantity] = useState(1);
+
+  const inc = () => {
+    setQuantity(quantity + 1);
+  }
+
+  const dec = () => {
+    setQuantity(quantity - 1);
+  }
+  return (
+    <>
+      <div className="App">
+        <header className="App-header">
+          <Webcam
+            ref={webcamRef}
+            muted={true}
+            style={{
+              position: "absolute",
+              marginLeft: "50px",
+              marginRight: "auto",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+              zindex: 9,
+              width: 640,
+              height: 480,
+            }}
+          />
+          <div className="details" >
+            <div className="right" >
+              <div>Name: Item1</div>
+              <div>Price: 500</div>
+              <div class="_p-qty">
+                <span>Add Quantity</span>
+                <div class="value-button decrease_" id="" value="Decrease Value">-</div>
+                <input type="number" name="qty" id="number" value="1" />
+                <div class="value-button increase_" id="" value="Increase Value">+</div>
+              </div>
+            </div>
+
+
+            <div className="buttom">
+              <div class="_p-add-cart">
+                <button class="btn-theme btn buy-btn" tabindex="0">
+                  <i class="fa fa-shopping-cart"></i> Buy Now
+                </button>
+                <button class="btn-theme btn btn-success" tabindex="0">
+                  <i class="fa fa-shopping-cart"></i> Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <canvas
+            ref={canvasRef}
+            style={{
+              position: "absolute",
+              marginLeft: "50px",
+              marginRight: "auto",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+              zindex: 8,
+              width: 640,
+              height: 480,
+            }}
+          />
+
+        </header>
+      </div>
+    </>
   );
 }
 

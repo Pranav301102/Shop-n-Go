@@ -13,7 +13,7 @@ const databaseConnection = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PA
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   operatorsAliases: false,
-
+  port : dbConfig.port,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -23,27 +23,35 @@ const databaseConnection = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PA
 });
 
 var Product = databaseConnection.define(
-  "Product",
+  "products",
   {
     Prod_ID: {
       type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV4,
+      defaultValue: Sequelize.UUIDV1,
       allowNull: false,
       primaryKey: true,
     },
     Prod_Name: {
-      type: Sequelize.STRING(50),
-      allowNull: true,
+      type: Sequelize.STRING
     },
-    isDeleted: Sequelize.BOOLEAN,
+    Prod_Price: {
+      type: Sequelize.INTEGER
+    },
+    Prod_Qty: {
+      type: Sequelize.INTEGER,
+    },
+    Prod_Image: {
+      type: Sequelize.TEXT,
+    },
+    // isDeleted: Sequelize.BOOLEAN,
   },
   {
     timestamps: false,
-    freezeTableName: true, //so Sequelize doesnt pluralize the table name
+    freezeTableName: true, 
   }
 );
 
-//create new brand
+//create new product
 router.post("/create_new_product", (request, response) => {
   //set headers
   response.header(
@@ -64,7 +72,7 @@ router.get("/fetch_all_products", function (request, response) {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   try {
-    Brand.findAll({ where: { isDeleted: false } }).then(function (products) {
+    Product.findAll().then(function (products) {
       response.json(products);
     });
   } catch (ex) {
@@ -83,7 +91,7 @@ router.get("/fetch_product_by_id/:Prod_ID", async function (request, response) {
     const Prod_ID = request.params.Prod_ID;
     console.log(Prod_ID);
     const prodResult = await Product.findOne({
-      where: { Prod_ID: Prod_ID, isDeleted: false },
+      where: { Prod_ID: Prod_ID },
     });
     console.log(prodResult);
     //check if result found
@@ -135,7 +143,7 @@ router.get("/testconnection", function (request, response) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  response.send("Brand Management Test");
+  response.send("Product Management Test");
 });
 
 //to export the class

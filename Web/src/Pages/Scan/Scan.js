@@ -10,26 +10,29 @@ const Scan = () => {
   const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
   return (
-    <ScanContainer>
-      <header>
-        <Link style={{ color: "inherit" }} to="/">
-          <AiOutlineCloseCircle className="pop" />
-        </Link>
-        <MdFlashlightOn className="pop" />
-      </header>
-      <article>
-        <div className="scanner"></div>
-        {isMobile ? (
-          <button>Upload from gallery</button>
-        ) : (
-          <input
-            type="file"
-            value={selectedFile}
-            onChange={(e) => setSelectedFile(e.target.files[0])}
-          />
-        )}
-      </article>
-    </ScanContainer>
+    <>
+        <ScanContainer>
+          <header>
+            <Link style={{ color: "inherit" }} to="/">
+              <AiOutlineCloseCircle className="pop" />
+            </Link>
+            <MdFlashlightOn className="pop" />
+          </header>
+          <article>
+            <div className="scanner"></div>
+            {isMobile ? (
+              <button>Upload from gallery</button>
+            ) : (
+              <input
+                type="file"
+                value={selectedFile}
+                onChange={(e) => setSelectedFile(e.target.files[0])}
+              />
+            )}
+          </article>
+        </ScanContainer>
+        {/* <h1>Hello</h1> */}
+    </>
   );
 };
 

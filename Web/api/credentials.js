@@ -1,8 +1,8 @@
 module.exports = {
-  HOST: "shopandgo.mysql.pythonanywhere-services.com",
-  USER: "shopandgo",
-  PASSWORD: "embe@shopngo",
-  DB: "shopandgo$inventory",
+  HOST: "sql12.freemysqlhosting.net",
+  USER: "sql12602389",
+  PASSWORD: "UuzX1t2aeJ",
+  DB: "sql12602389",
   dialect: "mysql",
   port : 3306,
   pool: {
