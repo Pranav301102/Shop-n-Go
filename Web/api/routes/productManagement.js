@@ -93,6 +93,52 @@ router.get("/fetch_all_products", function (request, response) {
   }
 });
 
+//get product quantity
+router.get("/get_product_quantity/:Prod_Name", function (request, response) {
+  //set headers 
+  response.header(  
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  try {
+    const Prod_ID = request.params.Prod_ID;
+    console.log(Prod_ID);
+    Product.findOne({
+      where: { Prod_ID: Prod_ID },
+      attributes: ["Prod_Qty"],
+    }).then(function (products) {
+      response.json(products);
+    });
+  } catch (ex) {
+    response.json(ex);
+  }
+});
+
+
+//update Quantity
+router.post("/update_product_quantity", function (request, response) { 
+  //set headers
+  response.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  try {
+    const Prod_Name = request.body.Prod_Name;
+    const Prod_Qty = request.body.Prod_Qty;
+    console.log(Prod_ID);
+    console.log(Prod_Qty);
+    Product.update(
+      { Prod_Qty: Prod_Qty },
+      { where: { Prod_Name: Prod_Name } }
+    ).then(function (products) {
+      response.json(products);
+    });
+  } catch (ex) {
+    response.json(ex);
+  }
+});
+
+
 //fetch specific brand by name
 router.get("/fetch_product_by_name/:Prod_Name", async function (request, response) {
   //set headers
