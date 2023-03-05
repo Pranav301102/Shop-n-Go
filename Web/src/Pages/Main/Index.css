@@ -3,7 +3,7 @@
     right: 0%;
     top: 10%;
     width: 700px;
-    height: 700px;
+    height: 650px;
     border: 1px solid red;
 }
 
@@ -100,7 +100,7 @@
 }
 ._p-add-cart .btn {
     text-transform: capitalize;
-    padding: 6px 20px;
+    padding: -4px 20px;
     /* width: 200px; */
     border-radius: 52px;
 }
@@ -114,12 +114,17 @@
 }
 .btn{
     border: 0px;
+    /* width: 250px; */
+}
+
+.btn-success {
+    width: 120px;
 }
 
 
 
 
-.item .sq_box span.wishlist {
+/* .item .sq_box span.wishlist {
     right: 5px !important;
 }
 .sq_box span.wishlist {
@@ -174,4 +179,4 @@
 }
 .sq_box span.wishlist i:hover {
     color: #fd7f34;
-}
+} */
