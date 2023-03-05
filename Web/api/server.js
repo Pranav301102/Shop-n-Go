@@ -2,6 +2,7 @@ var dbConfig = require("./credentials");
 const express = require("express");
 var Sequelize = require("sequelize");
 var brandManagement = require("./routes/productManagement");
+var authenticate = require("./routes/auth");
 const app = express(); 
 const PORT = 8085;
 
@@ -23,8 +24,8 @@ app.get("/", function (request, response) {
   response.send("Server is online!");
 });
 
-app.use("/api/productmanagement", brandManagement);
-
+app.use("/api/productManagement", brandManagement);
+app.use("/api/auth", authenticate);
 
 app.listen(PORT);
 console.log("server is running on http://127.0.0.1:" + PORT);
