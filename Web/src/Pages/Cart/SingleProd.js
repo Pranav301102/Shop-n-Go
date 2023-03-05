@@ -1,7 +1,8 @@
 import * as React from 'react';
 import './cart.css'
 
-export default function SingleProd({Name, Price, Img}) {
+
+export default function SingleProd({Name,Quantity ,Price, Img}) {
   return (
     <>
       <div className='prod' >
@@ -10,9 +11,10 @@ export default function SingleProd({Name, Price, Img}) {
         </div>
         <div className='price' >
           <p>Name : {Name}</p>
+          <p>Quantity: {Quantity}</p>
           <p>Price: {Price}</p>
         </div>
-        <button className='btn' >Buy Now</button>
+        
       </div>
     </>
   )

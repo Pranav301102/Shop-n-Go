@@ -1,16 +1,25 @@
 import React from 'react'
 import SingleProd from './SingleProd'
 import './cart.css'
+import { useLocation ,useNavigate} from 'react-router-dom'
 function AllProd() {
+  const {state} = useLocation()
+  const navigate = useNavigate()
+  console.log(state);
+  var price = 0;
+  var item = [];
+  for (item in state){
+    price = price + item.price;
+  }
 
-  const [data, setData] = React.useState([])
-
-  // axios.get('URL',).then((result) => {
-  //   setData(result.data)
-  // }).catch((err) => {
-  //   console.log(err);
-  // });
-
+  if(state == null){
+    return(
+      <div>
+        <h1>Cart is Empty</h1>
+      </div>
+    )
+  }
+  else{
   return (
     <>
       <h1 className='title' >My Cart</h1>
@@ -23,16 +32,20 @@ function AllProd() {
         <SingleProd Name={"Item1"} Price="500" Img={''} />
         <SingleProd Name={"Item1"} Price="500" Img={''} />
         <SingleProd Name={"Item1"} Price="500" Img={''} /> */}
+
         {
-          data.map((item) => {
+          state.map((item) => {
             return (
-              <SingleProd Name={item.Name} Price={item.Price} Img={item.Img} />
+              <SingleProd Name={item.name} Price={item.price} Img={''} Quantity={item.quantity} />
             )
           })
         }
+        <h1>Total Price: {price}</h1>
+        <button className='btn' onClick={()=>{navigate("/payment" ,{ state: price })}}>Buy Now</button>
       </div>
     </>
   )
+}
 }
 
 export default AllProd

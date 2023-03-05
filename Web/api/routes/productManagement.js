@@ -93,6 +93,31 @@ router.get("/fetch_all_products", function (request, response) {
   }
 });
 
+//fetch specific brand by name
+router.get("/fetch_product_by_name/:Prod_Name", async function (request, response) {
+  //set headers
+  response.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  try {
+    const Prod_Name = request.params.Prod_Name;
+    console.log(Prod_Name);
+    const prodResult = await Product.findOne({
+      where: { Prod_Name: Prod_Name },
+    });
+    console.log(prodResult);
+    //check if result found
+    if (prodResult === null) {
+      response.json("No Product Found");
+    } else {
+      response.json(prodResult);
+    }
+  } catch (ex) {
+    response.json(ex);
+  }
+});
+
 //fetch specific brand by id
 router.get("/fetch_product_by_id/:Prod_ID", async function (request, response) {
   //set headers

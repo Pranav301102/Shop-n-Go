@@ -9,6 +9,8 @@ import { model } from "@tensorflow/tfjs";
 // 2. TODO - Import drawing utility here
 // e.g. import { drawRect } from "./utilities";
 import { drawRect } from "../../Components/utilities";
+import { useNavigate } from "react-router-dom";
+import  axios  from 'axios';
 
 function Main() {
   const webcamRef = useRef(null);
@@ -92,8 +94,14 @@ function Main() {
     runCoco();
   }, []);
 
+  const navigate = useNavigate();
+  const [quantity, setQuantity] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [product, setProduct] = useState([]);
 
-  const [quantity, setQuantity] = useState(1);
+  const  addProductsToCart =  () => {
+    setProduct([...product, {name,quantity,price}]);
+  }
 
   const inc = () => {
     setQuantity(quantity + 1);
@@ -102,6 +110,18 @@ function Main() {
   const dec = () => {
     setQuantity(quantity - 1);
   }
+  useEffect(() => {
+    try{
+    axios.get(`http://127.0.0.1:8085/api/productManagement/fetch_product_by_name/${name}`)
+      .then(res => {
+        setPrice(res.data.Prod_Price * quantity );
+      })
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("main",product);
+  },[name,quantity,product]);
+
   return (
     <>
       <div className="App">
@@ -124,22 +144,22 @@ function Main() {
           <div className="details" >
             <div className="right" >
               <div>Name:{name} </div>
-              <div>Price: 500</div>
+              <div>Price: {price}</div>
               <div class="_p-qty">
                 <span>Add Quantity</span>
-                <div class="value-button decrease_" id="" value="Decrease Value">-</div>
-                <input type="number" name="qty" id="number" value="1" />
-                <div class="value-button increase_" id="" value="Increase Value">+</div>
+                <div class="value-button decrease_" id="" value="Decrease Value" onClick={dec}>-</div>
+                {quantity}
+                <div class="value-button increase_" id="" value="Increase Value " onClick={inc}>+</div>
               </div>
             </div>
 
 
             <div className="buttom">
               <div class="_p-add-cart">
-                <button class="btn-theme btn buy-btn" tabindex="0">
+                <button class="btn-theme btn buy-btn" tabindex="0" onClick={()=>{navigate("/cart" ,{ state: product });}}>
                   <i class="fa fa-shopping-cart"></i> Buy Now
                 </button>
-                <button class="btn-theme btn btn-success" tabindex="0">
+                <button class="btn-theme btn btn-success" tabindex="0" onClick={addProductsToCart}>
                   <i class="fa fa-shopping-cart"></i> Add to Cart
                 </button>
               </div>

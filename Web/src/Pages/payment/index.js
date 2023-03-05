@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { useLocation } from "react-router-dom";
 const Payment = () => {
+  const {state} = useLocation();
+  
   const existingCards = [
     {
       type: "paypal",
@@ -114,7 +116,7 @@ const Payment = () => {
         <section>
           <div>
             <p>Subtotal</p>
-            <p>400 INR</p>
+            <p>{state.price}</p>
           </div>
           <button>Pay and Checkout</button>
         </section>
