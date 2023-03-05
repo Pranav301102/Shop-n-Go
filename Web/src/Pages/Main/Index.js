@@ -13,7 +13,7 @@ import { drawRect } from "../../Components/utilities";
 function Main() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-
+  const [name, setName] = useState("");
   // Main function
   const runCoco = async () => {
     // 3. TODO - Load network
@@ -75,7 +75,8 @@ function Main() {
           0.8,
           videoWidth,
           videoHeight,
-          ctx
+          ctx,
+          setName
         );
       });
 
@@ -122,7 +123,7 @@ function Main() {
           />
           <div className="details" >
             <div className="right" >
-              <div>Name: Item1</div>
+              <div>Name:{name} </div>
               <div>Price: 500</div>
               <div class="_p-qty">
                 <span>Add Quantity</span>

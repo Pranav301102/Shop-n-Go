@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 const userData = {
   name: "",
@@ -19,6 +19,7 @@ const signin = {
 function Overlay() {
   const [formData, setForm] = useState(userData);
   const [signinData, setSignin] = useState(signin);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const [panImg, setpanImg] = useState();
@@ -46,10 +47,10 @@ function Overlay() {
       console.log("password matched");
       if (name && email && address && password && Confirmpassword) {
         // axios sign up
-        // axios.post(`${config.backendLocation}/auth/register`, {email, password, phone:address, username:name}).then((res) => {
-        //   window.location = "/verify?username="+name;
-        //   setForm(userData);
-        // });
+        axios.post(`http://127.0.0.1:8085/api/auth/users`, { "name" :email, "password" : password}).then((res) => {
+          window.location = "/";
+          setForm(userData);
+        });
       }
     } else {
       alert("password not matched");
@@ -74,26 +75,26 @@ function Overlay() {
     e.preventDefault();
     console.log(signinData);
     console.log("sign in");
-    const email = signinData.emailID;
+    const name = signinData.emailID;
     const password = signinData.passwordID;
-    console.log({ email, password });
-    // if (email && password) {
-    // 	// axios sign in
-    // 	axios
-    // 		.post(`${config.backendLocation}/auth/login`, {
-    // 			email,
-    // 			password,
-    // 		})
-    // 		.then((res) => {
-    // 			console.log(res.data);
-    // 			if (res.data.token) {
-    // 				localStorage.setItem("token", res.data.token);
-    // 				window.location = "/";
-    // 			} else {
-    // 				alert("Invalid Credentials");
-    // 			}
-    // 		});
-    // }
+    console.log({ name, password });
+    if (name && password) {
+    	// axios sign in
+    	axios
+    		.post(`http://127.0.0.1:8085/api/auth/login`, {
+    			name,
+    			password,
+    		})
+    		.then((res) => {
+    			console.log(res.data);
+    			if (res.status === 200) {
+            setUser(res.data);
+    				window.location = "/";
+    			} else {
+    				alert("Invalid Credentials");
+    			}
+    		});
+    }
   };
 
   return (

@@ -106,7 +106,7 @@ router.post('/login', async (req, res) => {
   // console.log("here",req.body)
   const user = await Users.findOne({ where: { User_Name: req.body.name } });
   if (user == null) {
-    return res.status(400).send('Cannot find user')
+    return res.status(401).send('Cannot find user')
   }
   try {
     if(bcrypt.compare(req.body.password, user.User_Pass)) {
@@ -128,6 +128,10 @@ router.post('/login', async (req, res) => {
   }
 })
 
+router.get('/verify', authenticateToken, (req, res) => {
+  res.status(200).send() 
+})
+
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
@@ -142,7 +146,7 @@ function authenticateToken(req, res, next) {
 }
 
  function generateAccessToken(user) {
-  const token = jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
+  const token = jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30 days' })
   return token;
 }
 

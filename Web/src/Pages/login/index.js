@@ -1,55 +1,3 @@
-// import React from "react";
-// import styled from "styled-components";
-
-// const Login = () => {
-//   return (
-//     <FormContainer>
-//       <h3>Login</h3>
-//       <div className="mb-3">
-//         <label>Email address</label>
-//         <input
-//           type="email"
-//           className="form-control"
-//           placeholder="Enter email"
-//         />
-//       </div>
-//       <div className="mb-3">
-//         <label>Password</label>
-//         <input
-//           type="password"
-//           className="form-control"
-//           placeholder="Enter password"
-//         />
-//       </div>
-//       <div className="mb-3">
-//         <div className="custom-control custom-checkbox">
-//           <input
-//             type="checkbox"
-//             className="custom-control-input"
-//             id="customCheck1"
-//           />
-//           <label className="custom-control-label" htmlFor="customCheck1">
-//             Remember me
-//           </label>
-//         </div>
-//       </div>
-//       <div className="d-grid">
-//         <button type="submit" className="btn btn-primary">
-//           Submit
-//         </button>
-//       </div>
-//       <p className="forgot-password text-right">
-//         Forgot <a href="#">password?</a>
-//       </p>
-//     </FormContainer>
-//   );
-// };
-
-// export default Login;
-
-// const FormContainer = styled.form`
-
-// `;
 
 import React, { useRef, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
@@ -89,7 +37,7 @@ function Overlay() {
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
-    console.log("sign up");
+    console.log("sign in");
     console.log(formData);
     const { name, email, address, password, Confirmpassword } = formData;
     if (
@@ -159,6 +107,7 @@ function Overlay() {
               <div className="mb-3">
                 <label>Email address</label>
                 <input
+                  onChange={handlerForm}
                   type="email"
                   className="form-control"
                   placeholder="Enter email"
@@ -167,13 +116,14 @@ function Overlay() {
               <div className="mb-3">
                 <label>Password</label>
                 <input
+                  onChange={handlerForm}
                   type="password"
                   className="form-control"
                   placeholder="Enter password"
                 />
               </div>
               <div className="d-grid">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary" onClick={handlerSubmit}>
                   Submit
                 </button>
               </div>

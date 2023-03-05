@@ -1,10 +1,17 @@
 var dbConfig = require("./credentials");
 const express = require("express");
+const cors=require("cors");
 var Sequelize = require("sequelize");
 var brandManagement = require("./routes/productManagement");
 var authenticate = require("./routes/auth");
 const app = express(); 
 const PORT = 8085;
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+app.use(cors(corsOptions))
 
 const databaseConnection = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
