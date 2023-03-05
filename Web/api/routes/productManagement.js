@@ -51,8 +51,21 @@ var Product = databaseConnection.define(
   }
 );
 
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+  if (token == null) return res.sendStatus(401)
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    console.log(err)
+    if (err) return res.sendStatus(403)
+    req.user = user
+    next()
+  })
+}
+
 //create new product
-router.post("/create_new_product", (request, response) => {
+router.post("/create_new_product", authenticateToken ,(request, response) => {
   //set headers
   response.header(
     "Access-Control-Allow-Headers",
@@ -105,7 +118,7 @@ router.get("/fetch_product_by_id/:Prod_ID", async function (request, response) {
   }
 });
 //update
-router.put("/update_target_product", function (request, response) {
+router.put("/update_target_product",authenticateToken ,function (request, response) {
   //set headers
   response.header(
     "Access-Control-Allow-Headers",

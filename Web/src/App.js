@@ -17,12 +17,12 @@ import Navbar from "./Components/Navbar";
 import Background from "./Components/Background";
 import Loader from "./Components/Loader";
 
-import Main from "./Pages/Main/Index";
-import Home from "./Pages/Home";
+import Main from "./Pages/Main/index";
+import Home from "./Pages/Home/index";
 import Scan from "./Pages/Scan";
 import Payment from "./Pages/Payment";
-import SignUp from "./Pages/Signup/Signup";
-import Login from "./Pages/login/Login";
+import SignUp from "./Pages/Signup/index";
+import Login from "./Pages/login/index";
 import Admin from "./Pages/admin";
 import AllProd from "./Pages/Cart/AllProd";
 function App() {
