@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
-import { axios } from 'axios';
+import  axios  from 'axios';
 const Payment = () => {
   const {state} = useLocation();
   //console.log("payment",state.state);
