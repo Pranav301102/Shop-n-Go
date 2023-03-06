@@ -95,12 +95,13 @@ function Main() {
   }, []);
 
   const navigate = useNavigate();
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(0);
   const [product, setProduct] = useState([]);
+  const [id, setId] = useState(0);
 
   const  addProductsToCart =  () => {
-    setProduct([...product, {name,quantity,price}]);
+    setProduct([...product, {name,quantity,price,id}]);
   }
 
   const inc = () => {
@@ -115,6 +116,7 @@ function Main() {
     axios.get(`http://127.0.0.1:8085/api/productManagement/fetch_product_by_name/${name}`)
       .then(res => {
         setPrice(res.data.Prod_Price * quantity );
+        setId(res.data.Prod_ID);
       })
     } catch (error) {
       console.log(error);
@@ -145,6 +147,7 @@ function Main() {
             <div className="right" >
               <div>Name:{name} </div>
               <div>Price: {price}</div>
+              <div>ID: {id}</div>
               <div className="_p-qty">
                 <span>Add Quantity</span>
                 <div className="value-button decrease_" id="" value="Decrease Value" onClick={dec}>-</div>

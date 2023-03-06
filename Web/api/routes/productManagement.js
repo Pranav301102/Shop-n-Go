@@ -65,6 +65,26 @@ function authenticateToken(req, res, next) {
   })
 }
 
+// updating Prod_Sold in products table by adding the quantity of the product sold
+router.post("/update_product_sold",(request, response) => {
+  //set headers
+  response.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  console.log(request.body);
+  const Prod_ID = request.body.Prod_ID;
+  const Prod_Sold = request.body.Prod_Sold;
+  const sold = Product.update({Prod_Sold: Sequelize.literal(`Prod_Sold + ${Prod_Sold}`)}, {where: {Prod_ID: Prod_ID}})
+  // subtracting the quantity of the product sold from the quantity of the product in the products table
+  const update = Product.update({Prod_Qty: Sequelize.literal(`Prod_Qty - ${Prod_Sold}`)}, {where: {Prod_ID: Prod_ID}})
+  Promise.all([sold, update]).then(function (result) {
+    response.json(result);
+  });
+});
+
+
+
 //create new product
 router.post("/create_new_product", authenticateToken ,(request, response) => {
   //set headers

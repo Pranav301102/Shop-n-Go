@@ -7,9 +7,7 @@ function AllProd() {
   const navigate = useNavigate()
   console.log(state);
   var price = 0;
- 
   var i = 0;
- 
 
   for (i in state){
     price = price + state[i].price;
@@ -45,7 +43,7 @@ function AllProd() {
           })
         }
         <h1>Total Price: {price}</h1>
-        <button className='btn' onClick={()=>{navigate("/payment" ,{ state:{ price,state} })}}>Buy Now</button>
+        <button className='btn' onClick={()=>{navigate("/payment" ,{ state:{ price, state} })}}>Buy Now</button>
       </div>
     </>
   )

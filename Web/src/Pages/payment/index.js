@@ -1,9 +1,32 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
+import { axios } from 'axios';
 const Payment = () => {
   const {state} = useLocation();
-  console.log("payment",state);
+  //console.log("payment",state.state);
+  const data = state.state;
+  console.log(data);
+
+  function updateData(){
+    var i = 0;
+    for(i in data){
+      updateQuantity(data[i].id,data[i].quantity);
+    }
+  }
+
+  function updateQuantity(id, quantity) {
+    console.log("update quantity");
+    axios.post(`http://127.0.0.1:8085/api/productManagement/update_product_sold`,
+    {
+      "Prod_ID": id,
+      "Prod_Sold": quantity
+      },
+    )
+    .then((res) => {
+      console.log(res);
+    })
+  }
   
   const existingCards = [
     {
@@ -119,7 +142,7 @@ const Payment = () => {
             <p>Subtotal</p>
             <p>{state.price}</p>
           </div>
-          <button>Pay and Checkout</button>
+          <button onClick={updateData}>Pay and Checkout</button>
         </section>
       </article>
     </PaymentContainer>
