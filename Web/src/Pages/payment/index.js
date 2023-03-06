@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 const Payment = () => {
   const {state} = useLocation();
+  console.log("payment",state);
   
   const existingCards = [
     {

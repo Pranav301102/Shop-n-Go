@@ -1,31 +1,221 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+import  axios  from 'axios';
+import AllProd from './../Cart/AllProd';
 
-const Admin = () => {
+const  Admin = () => {
+  const { state } = useLocation();
+  console.log("access token",state.accessToken);
+  const [data, changeData] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get(`http://127.0.0.1:8085/api/productManagement/fetch_all_products`)
+     .then(res => {
+    changeData(res.data);
+  })
+  },[]);
+
   return (
-    <ProfileContainer>
-      <section className="profile-img">
-        <img src="/bg-pattern.png" alt="profile" />
-      </section>
-      <section className="profile-desc">
-        <h2>Admin</h2>
-        <div>
-          <h3>Admin details</h3>
+    <>
+      <ProfileContainer>
+        <section className="profile-img">
+          <img src="/bg-pattern.png" alt="profile" />
+        </section>
+        <section className="profile-desc">
+          <h2>Admin</h2>
           <div>
-            <p>Email</p>
-            <p>Lorem, ipsum dolor.</p>
+            <h3>Admin details</h3>
+            <div>
+              <p>Email</p>
+            </div>
+            <div>
+              <p>Contact</p>
+              <p>Lorem, ipsum dolor.</p>
+            </div>
           </div>
-          <div>
-            <p>Contact</p>
-            <p>Lorem, ipsum dolor.</p>
-          </div>
-        </div>
-      </section>
-    </ProfileContainer>
+        </section>
+      </ProfileContainer>
+      <h1>Inventory</h1>
+      <Grid>
+        {
+          data === [] ? <h1>loading</h1> : 
+           data.map((item) => {
+            return (
+              <Product
+                ID= {item.Prod_ID}
+                Name={item.Prod_Name}
+                Quantity={item.Prod_Qty}
+                Price={item.Prod_Price}
+                Img={item.Prod_Img}
+                Token={state.accessToken}
+              />
+            );
+          })
+        }
+      </Grid>
+      <div>
+        <h1>New Product</h1>
+        <NewProd Token={state.accessToken}/>
+      </div>
+    </>
   );
 };
 
 export default Admin;
+
+function NewProd({Token}){
+  const [name, setName] = React.useState("");
+  const [quantity, setQuantity] = React.useState(0);
+  const [price, setPrice] = React.useState(0);
+  const [img, setImg] = React.useState("");
+
+  async function createProd() {
+    const res = await axios.post(`http://127.0.0.1:8085/api/productManagement/create_new_product`,
+    {Prod_Name: name, Prod_Qty: quantity, Prod_Price: price, Prod_Img: img},
+    {
+      headers: { authorization : `Bearer ${Token}` },
+    });
+    console.log(res);
+  }
+    return(
+    <>
+    <div>
+      <h4>Name</h4>
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+      <h4>Quantity</h4>
+      <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+      <h4>Price</h4>
+      <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+      <h4>Image</h4>
+      <input type="text" value={img} onChange={(e) => setImg(e.target.value)} />
+      <button onClick={createProd}>Add</button>
+    </div>
+    </>
+  )
+}
+
+function Product({ Name, Quantity, Price, Img ,ID,Token}) {
+  const [newPrice, setNewPrice] = React.useState(Price);
+  const [newQuantity, setNewQuantity] = React.useState(Quantity);
+  const [newImg, setNewImg] = React.useState(Img);
+  
+  function incQ() {
+    setNewQuantity(newQuantity + 1);
+  }
+  function decQ() {
+    setNewQuantity(newQuantity - 1);
+  }
+  function incP() {
+    setNewPrice(newPrice + 1);
+  }
+  function decP() {
+    setNewPrice(newPrice - 1);
+  }
+
+  async function  UpdateData() {
+    const res = await axios.post(`http://127.0.0.1:8085/api/productManagement/updateProduct`,
+    {Prod_ID: ID,  Prod_Qty: newQuantity, Prod_Price: newPrice},
+    {
+      headers: { authorization : `Bearer ${Token}` },
+    }
+    )
+    console.log(res);
+  }
+
+  async function  DeleteData() {
+    const res = await axios.post(`http:////127.0.0.1:8085/api/productManagement/deleteProduct`,
+    {Prod_ID: ID},
+    {
+      headers: { authorization : `Bearer ${Token}` },
+    })
+    console.log(res);
+  }
+
+  return (
+    <>
+      <Prod>
+        <ImgDiv>
+          <img src={Img} alt="prod img" />
+        </ImgDiv>
+        <h3>{Name}</h3>
+        <h4>ID={ID}</h4>
+        <div className="_p-qty">
+          <p>Quantity: </p>
+          <div
+            className="value-button decrease_"
+            id=""
+            value="Decrease Value"
+            onClick={decQ}
+          >
+            -
+          </div>
+          {newQuantity}
+          <div
+            className="value-button increase_"
+            id=""
+            value="Increase Value "
+            onClick={incQ}
+          >
+            +
+          </div>
+        </div>
+        <div className="_p-qty">
+          <p>Price: </p>
+          <div
+            className="value-button decrease_"
+            id=""
+            value="Decrease Value"
+            onClick={decP}
+          >
+            -
+          </div>
+          {newPrice}
+          <div
+            className="value-button increase_"
+            id=""
+            value="Increase Value "
+            onClick={incP}
+          >
+            +
+          </div>
+        </div>
+     
+        <Update onClick={UpdateData}>Update</Update>
+        <Update onClick={DeleteData}>Delete</Update>
+      </Prod>
+    </>
+  );
+}
+
+const Prod = styled.div`
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 1px 2px 0px;
+  border-radius: 15px;
+  padding: 20px;
+  align-items: center;
+`;
+const ImgDiv = styled.div`
+  width: 100%;
+  height: 100px;
+  border-radius: 15px;
+`;
+const Update = styled.button`
+  border-radius: 15px;
+  height: 30px;
+  background-color: #4caf50;
+  width: 100px;
+`;
+
+const Grid = styled.div`
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 40px;
+  margin-left: 50px;
+`;
 
 const ProfileContainer = styled.main`
   width: 100%;

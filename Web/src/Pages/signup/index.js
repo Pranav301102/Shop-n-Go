@@ -48,7 +48,8 @@ function Overlay() {
       if (name && email && address && password && Confirmpassword) {
         // axios sign up
         axios.post(`http://127.0.0.1:8085/api/auth/users`, { "name" :email, "password" : password}).then((res) => {
-          window.location = "/";
+          navigate("/login");
+          alert("User Created");
           setForm(userData);
         });
       }
@@ -71,7 +72,7 @@ function Overlay() {
     });
   };
 
-  const SignIN = (e) => {
+  const  SignIN = (e) => {
     e.preventDefault();
     console.log(signinData);
     console.log("sign in");
@@ -89,7 +90,7 @@ function Overlay() {
     			console.log(res.data);
     			if (res.status === 200) {
             setUser(res.data);
-    				window.location = "/";
+    				navigate("/admin",{state: res.data});
     			} else {
     				alert("Invalid Credentials");
     			}

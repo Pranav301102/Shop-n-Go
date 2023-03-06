@@ -3,6 +3,7 @@ import './cart.css'
 
 
 export default function SingleProd({Name,Quantity ,Price, Img}) {
+  
   return (
     <>
       <div className='prod' >

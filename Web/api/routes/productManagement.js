@@ -5,6 +5,7 @@ const { QueryTypes } = require("sequelize");
 var dbConfig = require("../credentials");
 const { response } = require("express");
 const bodyParser = require("body-parser");
+const jwt = require('jsonwebtoken');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(bodyParser.raw());
@@ -115,28 +116,7 @@ router.get("/get_product_quantity/:Prod_Name", function (request, response) {
 });
 
 
-//update Quantity
-router.post("/update_product_quantity", function (request, response) { 
-  //set headers
-  response.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  try {
-    const Prod_Name = request.body.Prod_Name;
-    const Prod_Qty = request.body.Prod_Qty;
-    console.log(Prod_ID);
-    console.log(Prod_Qty);
-    Product.update(
-      { Prod_Qty: Prod_Qty },
-      { where: { Prod_Name: Prod_Name } }
-    ).then(function (products) {
-      response.json(products);
-    });
-  } catch (ex) {
-    response.json(ex);
-  }
-});
+
 
 
 //fetch specific brand by name
@@ -189,7 +169,32 @@ router.get("/fetch_product_by_id/:Prod_ID", async function (request, response) {
   }
 });
 //update
-router.put("/update_target_product",authenticateToken ,function (request, response) {
+router.post("/updateProduct" ,authenticateToken,function (request, response) {
+  //set headers
+  try {
+    const ID = request.body.Prod_ID;
+
+    Product.update(
+      {
+        //fields to update
+        Prod_Qty: request.body.Prod_Qty,
+        Prod_Price: request.body.Prod_Price
+      },
+      {
+        //where clause
+        where: {
+            Prod_ID: ID,
+        },
+      }
+    ).then(function (count) {
+      response.json("Rows updated " + count);
+    });
+  } catch (ex) {
+    response.json(ex).send('here');
+  }
+});
+
+router.post("/deleteProduct/", authenticateToken, function (request, response) {
   //set headers
   response.header(
     "Access-Control-Allow-Headers",
@@ -197,25 +202,17 @@ router.put("/update_target_product",authenticateToken ,function (request, respon
   );
   try {
     const Prod_ID = request.body.Prod_ID;
-
-    Product.update(
-      {
-        //fields to update
-        Prod_Name: request.body.Prod_Name,
-      },
-      {
-        //where clause
-        where: {
-            Prod_ID: Prod_ID,
-        },
-      }
-    ).then(function (count) {
-      response.json("Rows updated " + count);
+    console.log(Prod_ID);
+    Product.destroy({
+      where: { Prod_ID: Prod_ID },
+    }).then(function (products) {
+      response.json(products);
     });
   } catch (ex) {
     response.json(ex);
   }
 });
+
 
 //TODO delete: can use the paranoid method but we dont have a deletion timestamp column
 //so we will just set the isDeleted to false

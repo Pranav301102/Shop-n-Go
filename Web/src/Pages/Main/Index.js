@@ -145,11 +145,11 @@ function Main() {
             <div className="right" >
               <div>Name:{name} </div>
               <div>Price: {price}</div>
-              <div class="_p-qty">
+              <div className="_p-qty">
                 <span>Add Quantity</span>
-                <div class="value-button decrease_" id="" value="Decrease Value" onClick={dec}>-</div>
+                <div className="value-button decrease_" id="" value="Decrease Value" onClick={dec}>-</div>
                 {quantity}
-                <div class="value-button increase_" id="" value="Increase Value " onClick={inc}>+</div>
+                <div className="value-button increase_" id="" value="Increase Value " onClick={inc}>+</div>
               </div>
             </div>
 
