@@ -47,7 +47,7 @@ function Overlay() {
       console.log("password matched");
       if (name && email && address && password && Confirmpassword) {
         // axios sign up
-        axios.post(`http://127.0.0.1:8085/api/auth/users`, { "email" :email, "password" : password, "address" :address, "name" :name }).then((res) => {
+        axios.post(`http://127.0.0.1:8085/api/auth/users`, { "name" :email, "password" : password}).then((res) => {
           navigate("/signin");
           alert("User Created");
           setForm(userData);
@@ -110,84 +110,43 @@ function Overlay() {
           <h2>Sign UP</h2>
           <Form>
             <form>
-              
                 <>
                   <div>
-                    <label htmlFor="name">Enter name</label>
+                    <label htmlFor="emailID">Enter Email</label>
                     <input
                       type="text"
-                      name="name"
-                      id="name"
-                      placeholder="Enter name..."
-                      value={formData.name}
-                      onChange={handlerForm}
-                      autoComplete="off"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email">Enter Email</label>
-                    <input
-                      type="text"
-                      name="email"
-                      id="email"
+                      name="emailID"
+                      id="emailID"
                       placeholder="Enter email..."
-                      value={formData.email}
-                      onChange={handlerForm}
-                      autoComplete="off"
+                      value={signinData.emailID}
+                      onChange={handleSignin}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="address">Enter number</label>
-                    <input
-                      type="text"
-                      name="address"
-                      id="address"
-                      placeholder="address..."
-                      value={formData.address}
-                      onChange={handlerForm}
-                      autoComplete="off"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="password">Enter Password</label>
+                    <label htmlFor="passwordID">Enter Password</label>
                     <input
                       type="password"
-                      name="password"
-                      id="password"
+                      name="passwordID"
+                      id="passwordID"
                       placeholder="Enter password..."
-                      value={formData.password}
-                      onChange={handlerForm}
-                      autoComplete="off"
+                      value={signinData.passwordID}
+                      onChange={handleSignin}
                     />
                   </div>
-                  <div>
-                    <label htmlFor="Confirmpassword">Enter Password</label>
-                    <input
-                      type="password"
-                      name="Confirmpassword"
-                      id="Confirmpassword"
-                      placeholder="Enter password..."
-                      value={formData.Confirmpassword}
-                      onChange={handlerForm}
-                      autoComplete="off"
-                    />
-                  </div>
-                  <button type="submit" onClick={handlerSubmit}>
-                    SIGN UP
+                  <button type="submit" onClick={SignIN}>
+                    SUBMIT
                   </button>
                 </>
-              
+             
             </form>
             <p>
               
                 <p>
-                  Already have an account?{" "}
-                  <Btn onClick={() => navigate('/signin')}> Sign In </Btn>{" "}
+                  Don't have an account?
+                  <Btn onClick={() =>navigate('/signup')}> Sign UP </Btn>{" "}
                 </p>
+              
               
             </p>
           </Form>
@@ -197,7 +156,7 @@ function Overlay() {
   );
 }
 
-const Sign = () => {
+const SignIn = () => {
   return <Overlay />;
 };
 
@@ -324,8 +283,8 @@ const Btn = styled.button`
   padding: 0 3px;
   text-decoration: underline;
   background-color: transparent;
-  color: #fff;
+  color: red;
   font-size: 15px;
 `;
 
-export default Sign;
+export default SignIn;

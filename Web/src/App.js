@@ -17,11 +17,12 @@ import Navbar from "./Components/Navbar";
 import Background from "./Components/Background";
 import Loader from "./Components/Loader";
 
-import Main from "./Pages/Main/index";
+import Main from "./Pages/Main/Index";
 import Home from "./Pages/Home/index";
 import Scan from "./Pages/Scan";
 import Payment from "./Pages/Payment";
 import SignUp from "./Pages/Signup/index";
+import SignIn from "./Pages/Signin/index";
 import Login from "./Pages/login/index";
 import Admin from "./Pages/admin";
 import AllProd from "./Pages/Cart/AllProd";
@@ -38,6 +39,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/signin" element={<SignIn />} />
               <Route path="/main" element={<Main />} />
               <Route path="/scan" element={<Scan />} />
               <Route path="/payment" element={<Payment />} />

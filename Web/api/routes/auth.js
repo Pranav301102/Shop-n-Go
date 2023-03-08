@@ -41,8 +41,15 @@ var Users = databaseConnection.define(
     User_Pass: {
       type: Sequelize.STRING
     },
+    
     User_Token: {
       type: Sequelize.INTEGER,
+    },
+    User_Email: {
+      type: Sequelize.TEXT
+    },
+    User_Address: {
+      type: Sequelize.TEXT
     },
     // isDeleted: Sequelize.BOOLEAN,
   },
@@ -72,7 +79,7 @@ router.post('/users', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
     // const user = { name: req.body.name, password: hashedPassword }
-    Users.create({User_Name: req.body.name, User_Pass: hashedPassword })
+    Users.create({User_Name: req.body.name, User_Pass: hashedPassword, User_Email: req.body.email, User_Address: req.body.address })
     // users.push(user)
     res.status(201).send()
   } catch {
