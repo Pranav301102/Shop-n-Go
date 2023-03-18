@@ -324,7 +324,7 @@ const Btn = styled.button`
   padding: 0 3px;
   text-decoration: underline;
   background-color: transparent;
-  color: #fff;
+  color: red;
   font-size: 15px;
 `;
 
