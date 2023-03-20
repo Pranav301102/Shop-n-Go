@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import React from 'react'
 import SingleProd from './SingleProd'
 import './cart.css'
@@ -17,7 +18,7 @@ function AllProd() {
   if(state == null){
     return(
       <div>
-        <h1>Cart is Empty</h1>
+        <Pad>Cart is Empty</Pad>
       </div>
     )
   }
@@ -49,5 +50,12 @@ function AllProd() {
   )
 }
 }
+
+const Pad = styled.div`
+  padding-left:50px;
+  padding-top:25px;
+  font-weight: bold;
+  font-size: 2vw;
+`;
 
 export default AllProd

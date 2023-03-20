@@ -3,18 +3,27 @@ import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import  axios  from 'axios';
 import AllProd from './../Cart/AllProd';
+import { useNavigate } from "react-router-dom";
 
 const  Admin = () => {
   const { state } = useLocation();
-  console.log("access token",state.accessToken);
   const [data, changeData] = React.useState([]);
-
+  const navigate = useNavigate();
   React.useEffect(() => {
     axios.get(`http://127.0.0.1:8085/api/productManagement/fetch_all_products`)
      .then(res => {
     changeData(res.data);
   })
   },[]);
+  if (state == null){
+    return (
+      <div><p><CenterID>Login First</CenterID><Btn onClick={() =>navigate('/signin')}> Sign In </Btn>{" "}</p></div>)
+ 
+  }
+  console.log("access token",state.accessToken);
+  
+
+  
 
   return (
     <>
@@ -245,3 +254,33 @@ const ProfileContainer = styled.main`
     }
   }
 `;
+ 
+const CenterID = styled.div`
+  width: 100%;
+  max-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 3vw;
+  padding-top : 25vh;
+`;
+
+const Btn = styled.div`
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  padding: 0 3px;
+  text-decoration: underline;
+  background-color: transparent;
+  color: blue;
+  font-size: 3vh;
+  width: 100%;
+  max-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top : 2vh;
+`;
+ 

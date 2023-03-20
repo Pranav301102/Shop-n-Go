@@ -318,13 +318,14 @@ const BgImg = styled.div`
 `;
 
 const Btn = styled.button`
+  cursor: pointer;
   background-color: #fff;
   border: none;
   outline: none;
   padding: 0 3px;
   text-decoration: underline;
   background-color: transparent;
-  color: #fff;
+  color: blue;
   font-size: 15px;
 `;
 
