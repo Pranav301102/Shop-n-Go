@@ -51,7 +51,6 @@ var Users = databaseConnection.define(
     User_Address: {
       type: Sequelize.TEXT
     },
-    // isDeleted: Sequelize.BOOLEAN,
   },
   {
     timestamps: false,
