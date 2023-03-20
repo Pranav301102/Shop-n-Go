@@ -5,12 +5,13 @@ import * as tf from "@tensorflow/tfjs";
 // e.g. import * as tfmodel from "@tensorflow-models/tfmodel";
 import Webcam from "react-webcam";
 import "./Index.css";
+import './style.css'
 import { model } from "@tensorflow/tfjs";
 // 2. TODO - Import drawing utility here
 // e.g. import { drawRect } from "./utilities";
 import { drawRect } from "../../Components/utilities";
 import { useNavigate } from "react-router-dom";
-import  axios  from 'axios';
+import axios from 'axios';
 
 function Main() {
   const webcamRef = useRef(null);
@@ -100,8 +101,8 @@ function Main() {
   const [product, setProduct] = useState([]);
   const [id, setId] = useState(0);
 
-  const  addProductsToCart =  () => {
-    setProduct([...product, {name,quantity,price,id}]);
+  const addProductsToCart = () => {
+    setProduct([...product, { name, quantity, price, id }]);
   }
 
   const inc = () => {
@@ -112,17 +113,17 @@ function Main() {
     setQuantity(quantity - 1);
   }
   useEffect(() => {
-    try{
-    axios.get(`http://127.0.0.1:8085/api/productManagement/fetch_product_by_name/${name}`)
-      .then(res => {
-        setPrice(res.data.Prod_Price * quantity );
-        setId(res.data.Prod_ID);
-      })
+    try {
+      axios.get(`http://127.0.0.1:8085/api/productManagement/fetch_product_by_name/${name}`)
+        .then(res => {
+          setPrice(res.data.Prod_Price * quantity);
+          setId(res.data.Prod_ID);
+        })
     } catch (error) {
       console.log(error);
     }
-    console.log("main",product);
-  },[name,quantity,product]);
+    console.log("main", product);
+  }, [name, quantity, product]);
 
   return (
     <>
@@ -144,22 +145,25 @@ function Main() {
             }}
           />
           <div className="details" >
-            <div className="right" >
-              <div>Name:{name} </div>
-              <div>Price: {price}</div>
-              <div>ID: {id}</div>
-              <div className="_p-qty">
-                <span>Add Quantity</span>
-                <div className="value-button decrease_" id="" value="Decrease Value" onClick={dec}>-</div>
-                {quantity}
-                <div className="value-button increase_" id="" value="Increase Value " onClick={inc}>+</div>
+            
+
+            <div className="qyt">
+              <p>Name:{name} </p>
+              <p>Price: {price}</p>
+              <p>ID: {id}</p>
+              <div className="inc_dec">
+                <span>Quantity:</span>
+                <div className="values" >
+                  <div className="value-button decrease_" id="" value="Decrease Value" onClick={dec}>-</div>
+                  {quantity}
+                  <div className="value-button increase_" id="" value="Increase Value " onClick={inc}>+</div>
+                </div>
               </div>
             </div>
 
-
-            <div className="buttom">
-              <div class="_p-add-cart">
-                <button class="btn-theme btn buy-btn" tabindex="0" onClick={()=>{navigate("/cart" ,{ state: product });}}>
+            <div className="buttons" >
+              <div className="AddBtn" >
+                <button class="btn-theme btn buy-btn" tabindex="0" onClick={() => { navigate("/cart", { state: product }); }}>
                   <i class="fa fa-shopping-cart"></i> Buy Now
                 </button>
                 <button class="btn-theme btn btn-success" tabindex="0" onClick={addProductsToCart}>
@@ -167,6 +171,7 @@ function Main() {
                 </button>
               </div>
             </div>
+           
           </div>
           <canvas
             ref={canvasRef}

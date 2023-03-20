@@ -107,7 +107,7 @@ function Overlay() {
           </BgImg>
         </Left>
         <Right>
-          <h2>Sign In</h2>
+
           <Form>
             <form>
                 <>
@@ -144,7 +144,7 @@ function Overlay() {
               
                 <p>
                   Don't have an account?
-                  <Btn onClick={() =>navigate('/signup')}> Sign UP </Btn>{" "}
+                  <Btn onClick={() =>navigate('/signup')}> Sign Up </Btn>{" "}
                 </p>
               
               
