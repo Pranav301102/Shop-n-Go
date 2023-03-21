@@ -5,6 +5,7 @@ import  axios  from 'axios';
 import AllProd from './../Cart/AllProd';
 import { useNavigate } from "react-router-dom";
 
+
 const  Admin = () => {
   const { state } = useLocation();
   const [data, changeData] = React.useState([]);
@@ -37,6 +38,7 @@ const  Admin = () => {
             <h3>Admin details</h3>
             <div>
               <p>Email</p>
+              <p></p>
             </div>
             <div>
               <p>Contact</p>
@@ -63,10 +65,12 @@ const  Admin = () => {
           })
         }
       </Grid>
-      <div>
-        <h1>New Product</h1>
-        <NewProd Token={state.accessToken}/>
-      </div>
+      <Grid>
+        <div>
+          <h1>New Product</h1>
+          <NewProd Token={state.accessToken}/>
+        </div>
+      </Grid>
     </>
   );
 };
@@ -79,9 +83,13 @@ function NewProd({Token}){
   const [price, setPrice] = React.useState(0);
   const [img, setImg] = React.useState("");
 
+  async function refreshPage() {
+    window.location.reload();
+}
+
   async function createProd() {
     const res = await axios.post(`http://127.0.0.1:8085/api/productManagement/create_new_product`,
-    {Prod_Name: name, Prod_Qty: quantity, Prod_Price: price, Prod_Img: img},
+    {Prod_Name: name, Prod_Qty: quantity, Prod_Price: price, Prod_Image: img},
     {
       headers: { authorization : `Bearer ${Token}` },
     });
@@ -99,6 +107,7 @@ function NewProd({Token}){
       <h4>Image</h4>
       <input type="text" value={img} onChange={(e) => setImg(e.target.value)} />
       <button onClick={createProd}>Add</button>
+      <button onClick={refreshPage}>Refresh</button>
     </div>
     </>
   )
@@ -144,9 +153,9 @@ function Product({ Name, Quantity, Price, Img ,ID,Token}) {
   return (
     <>
       <Prod>
-        <ImgDiv>
-          <img src={Img} alt="prod img" />
-        </ImgDiv>
+        <div>
+          <img src={Img} alt="Product Image" />
+        </div>
         <h3>{Name}</h3>
         <h4>ID={ID}</h4>
         <div className="_p-qty">
@@ -224,6 +233,7 @@ const Grid = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 40px;
   margin-left: 50px;
+  padding-bottom: 10px;
 `;
 
 const ProfileContainer = styled.main`

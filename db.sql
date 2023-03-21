@@ -12,9 +12,12 @@ CREATE TABLE users (
 
 use sql12607094;
 CREATE TABLE products (
-    Prod_ID int PRIMARY KEY,
+    Prod_ID int PRIMARY KEY NOT NULL UNIQUE,
     Prod_Name varchar(255),
 	Prod_Price int,
     Prod_Qty int,
     Prod_Image text
 );
+
+ALTER TABLE products
+ADD CONSTRAINT NOT NULL(Prod_ID);

@@ -42,7 +42,7 @@ var Product = databaseConnection.define(
       type: Sequelize.INTEGER,
     },
     Prod_Image: {
-      type: Sequelize.TEXT,
+      type: Sequelize.STRING,
     },
     // isDeleted: Sequelize.BOOLEAN,
   },
