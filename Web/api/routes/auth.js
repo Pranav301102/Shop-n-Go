@@ -62,6 +62,30 @@ let refreshTokens = []
 
 const users = []
 
+router.get("/fetch_users/:User_Token", async function (request, response) {
+  //set headers
+  response.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  try {
+    const User_Token = request.params.User_Token;
+    console.log(User_Token);
+    const userResult = await Users.findone({
+      where: { User_Token: User_Token},
+    });
+    console.log(userResult);
+    //check if result found
+    if(userResult === null) {
+      response.json("No User Found");
+    } else {
+      response.json(userResult);
+    }
+   } catch (ex) {
+      response.json(ex);
+  }
+});
+
 router.get('/users', (req, res) => {
   try {
     Users.findAll().then(function (users) {

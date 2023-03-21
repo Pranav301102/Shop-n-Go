@@ -17,9 +17,20 @@ const  Admin = () => {
   })
   },[]);
   if (state == null){
-    return (
-      <div><p><CenterID>Login First</CenterID><Btn onClick={() =>navigate('/signin')}> Sign In </Btn>{" "}</p></div>)
- 
+    timer();
+    return(<div><p><CenterID>Login First, redirecting in<div id="countdown"></div></CenterID><Btn onClick={() =>navigate('/signin')}> Sign In </Btn>{" "}</p></div>);
+  }
+
+  function timer(){
+    var timeleft = 2;
+    window.setInterval(function(){
+      if(timeleft <=0){
+        window.location.href = "http://localhost:3000/signin";
+      } else {
+        document.getElementById("countdown").innerHTML =timeleft + " seconds...";
+      }
+      timeleft -=1;
+  }, 1000);
   }
   console.log("access token",state.accessToken);
   

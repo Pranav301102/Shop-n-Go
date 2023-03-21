@@ -107,7 +107,7 @@ function Overlay() {
           </BgImg>
         </Left>
         <Right>
-          <h2>Sign UP</h2>
+          <h2>Sign Up</h2>
           <Form>
             <form>
               
