@@ -58,46 +58,6 @@ function Overlay() {
     }
   };
 
-  const handlerImg = (e) => {
-    setpanImg(e.target.files[0]);
-  };
-
-  const handleSignin = (e) => {
-    const { name, value } = e.target;
-    setSignin((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
-  };
-
-  const  SignIN = (e) => {
-    e.preventDefault();
-    console.log(signinData);
-    console.log("sign in");
-    const name = signinData.emailID;
-    const password = signinData.passwordID;
-    console.log({ name, password });
-    if (name && password) {
-    	// axios sign in
-    	axios
-    		.post(`http://127.0.0.1:8085/api/auth/login`, {
-    			name,
-    			password,
-    		})
-    		.then((res) => {
-    			console.log(res.data);
-    			if (res.status === 200) {
-            setUser(res.data);
-    				navigate("/admin",{state: res.data});
-    			} else {
-    				alert("Invalid Credentials");
-    			}
-    		});
-    }
-  };
-
   return (
     <Main>
       <Container>
