@@ -1,41 +1,42 @@
 import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
-import  axios  from 'axios';
+import axios from 'axios';
 import AllProd from './../Cart/AllProd';
 import { useNavigate } from "react-router-dom";
+import SingleProd from "./SingleProd";
+import './ap.css'
 
-
-const  Admin = () => {
+const Admin = () => {
   const { state } = useLocation();
   const [data, changeData] = React.useState([]);
   const navigate = useNavigate();
   React.useEffect(() => {
     axios.get(`http://127.0.0.1:8085/api/productManagement/fetch_all_products`)
-     .then(res => {
-    changeData(res.data);
-  })
-  },[]);
-  if (state == null){
+      .then(res => {
+        changeData(res.data);
+      })
+  }, []);
+  if (state == null) {
     timer();
-    return(<div><p><CenterID>Login First, redirecting in<div id="countdown"></div></CenterID><Btn onClick={() =>navigate('/signin')}> Sign In </Btn>{" "}</p></div>);
+    return (<div><p><CenterID>Login First, redirecting in<div id="countdown"></div></CenterID><Btn onClick={() => navigate('/signin')}> Sign In </Btn>{" "}</p></div>);
   }
 
-  function timer(){
+  function timer() {
     var timeleft = 2;
-    window.setInterval(function(){
-      if(timeleft <=0){
+    window.setInterval(function () {
+      if (timeleft <= 0) {
         window.location.href = "http://localhost:3000/signin";
       } else {
-        document.getElementById("countdown").innerHTML =timeleft + " seconds...";
+        document.getElementById("countdown").innerHTML = timeleft + " seconds...";
       }
-      timeleft -=1;
-  }, 1000);
+      timeleft -= 1;
+    }, 1000);
   }
-  console.log("access token",state.accessToken);
-  
+  console.log("access token", state.accessToken);
 
-  
+
+
 
   return (
     <>
@@ -59,7 +60,7 @@ const  Admin = () => {
         </section>
       </ProfileContainer>
       <h1>Inventory</h1>
-      <Grid>
+      {/* <Grid>
         {
           data === [] ? <h1>loading</h1> : 
            data.map((item) => {
@@ -75,11 +76,17 @@ const  Admin = () => {
             );
           })
         }
-      </Grid>
+      </Grid> */}
+      <div className="content" >
+        <SingleProd />
+        <SingleProd />
+        <SingleProd />
+        <SingleProd />
+      </div>
       <Grid>
         <div>
           <h1>New Product</h1>
-          <NewProd Token={state.accessToken}/>
+          <NewProd Token={state.accessToken} />
         </div>
       </Grid>
     </>
@@ -88,7 +95,7 @@ const  Admin = () => {
 
 export default Admin;
 
-function NewProd({Token}){
+function NewProd({ Token }) {
   const [name, setName] = React.useState("");
   const [quantity, setQuantity] = React.useState(0);
   const [price, setPrice] = React.useState(0);
@@ -96,39 +103,41 @@ function NewProd({Token}){
 
   async function refreshPage() {
     window.location.reload();
-}
+  }
 
   async function createProd() {
     const res = await axios.post(`http://127.0.0.1:8085/api/productManagement/create_new_product`,
-    {Prod_Name: name, Prod_Qty: quantity, Prod_Price: price, Prod_Image: img},
-    {
-      headers: { authorization : `Bearer ${Token}` },
-    });
+      { Prod_Name: name, Prod_Qty: quantity, Prod_Price: price, Prod_Image: img },
+      {
+        headers: { authorization: `Bearer ${Token}` },
+      });
     console.log(res);
   }
-    return(
+  return (
     <>
-    <div>
-      <h4>Name</h4>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      <h4>Quantity</h4>
-      <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-      <h4>Price</h4>
-      <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
-      <h4>Image</h4>
-      <input type="text" value={img} onChange={(e) => setImg(e.target.value)} />
-      <button onClick={createProd}>Add</button>
-      <button onClick={refreshPage}>Refresh</button>
-    </div>
+      <div className="form-content" >
+        <div className="form" >
+          <label>Name</label>
+          <input   type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <label>Quantity</label>
+          <input   type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          <label>Price</label>
+          <input   type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+          <label>Image</label>
+          <input className="file" type="file" value={img} onChange={(e) => setImg(e.target.value)} />
+          <button className="btn-add" onClick={createProd}>Add</button>
+          <button className="btn-ref" onClick={refreshPage}>Refresh</button>
+        </div>
+      </div>
     </>
   )
 }
 
-function Product({ Name, Quantity, Price, Img ,ID,Token}) {
+function Product({ Name, Quantity, Price, Img, ID, Token }) {
   const [newPrice, setNewPrice] = React.useState(Price);
   const [newQuantity, setNewQuantity] = React.useState(Quantity);
   const [newImg, setNewImg] = React.useState(Img);
-  
+
   function incQ() {
     setNewQuantity(newQuantity + 1);
   }
@@ -142,22 +151,22 @@ function Product({ Name, Quantity, Price, Img ,ID,Token}) {
     setNewPrice(newPrice - 1);
   }
 
-  async function  UpdateData() {
+  async function UpdateData() {
     const res = await axios.post(`http://127.0.0.1:8085/api/productManagement/updateProduct`,
-    {Prod_ID: ID,  Prod_Qty: newQuantity, Prod_Price: newPrice},
-    {
-      headers: { authorization : `Bearer ${Token}` },
-    }
+      { Prod_ID: ID, Prod_Qty: newQuantity, Prod_Price: newPrice },
+      {
+        headers: { authorization: `Bearer ${Token}` },
+      }
     )
     console.log(res);
   }
 
-  async function  DeleteData() {
+  async function DeleteData() {
     const res = await axios.post(`http:////127.0.0.1:8085/api/productManagement/deleteProduct`,
-    {Prod_ID: ID},
-    {
-      headers: { authorization : `Bearer ${Token}` },
-    })
+      { Prod_ID: ID },
+      {
+        headers: { authorization: `Bearer ${Token}` },
+      })
     console.log(res);
   }
 
@@ -209,7 +218,7 @@ function Product({ Name, Quantity, Price, Img ,ID,Token}) {
             +
           </div>
         </div>
-     
+
         <Update onClick={UpdateData}>Update</Update>
         <Update onClick={DeleteData}>Delete</Update>
       </Prod>
@@ -275,7 +284,7 @@ const ProfileContainer = styled.main`
     }
   }
 `;
- 
+
 const CenterID = styled.div`
   width: 100%;
   max-width: 100vw;
@@ -304,4 +313,4 @@ const Btn = styled.div`
   align-items: center;
   padding-top : 2vh;
 `;
- 
+

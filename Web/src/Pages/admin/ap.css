@@ -1,0 +1,176 @@
+.list ul.items li.active {
+    background: #5ba2e4 !important;
+}
+.list ul.items li.active .favourite {
+    fill: white !important;
+}
+.list ul.items li.active .description .price {
+    color: white !important;
+    font-size: 12px;
+}
+
+.list ul.items li.active .description .title {
+    color: white;
+}
+
+.list ul.items li.active .description p {
+    color: white !important;
+    font-weight: 100 !important;
+}
+
+.list ul.items li.item {
+    display: flex;
+    width: 80%;
+    height: 70px;
+    padding: 5px 0px;
+    border-bottom: 2px solid #f3f3f3;
+    /* cursor: pointer; */
+    transition: 0.3s;
+    position: relative;
+}
+.list ul.items li.item div {
+    margin: 0px 5px;
+}
+.list ul.items li.item .checkbox {
+    margin: 23px 0px 0px 25px;
+}
+
+.list ul.items li.item .checkbox .check {
+    height: 18px;
+    width: 18px;
+    border-radius: 3px;
+    background: white;
+    border: 2px solid #f3f3f3;
+    cursor: pointer;
+}
+.list ul.items li.item .checkbox .check .fa {
+    font-size: 10px;
+    margin: 5px 4px;
+    position: absolute;
+    color: #5ba2e4;
+}
+.list ul.items li.item .favourite {
+    /* border: 1px solid red; */
+    /* margin-bottom: 5px; */
+    min-width: 15px;
+    height: 15px;
+    fill: #ccd5db;
+    padding: 25px 10px;
+    cursor: pointer;
+}
+
+.favourite svg {
+    width: 40px;
+    height: 40px;
+    fill: #ccd5db;
+    margin-bottom: 5px;
+}
+
+.list ul.items li.item .description {
+    margin: 15px 5px;
+}
+.list ul.items li.item .description .price {
+    color: #4070fa;
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    margin: 0px 20px;
+    font-weight: 900;
+}
+
+.qyt {
+    /* border: 1px solid red; */
+    width: 80px;
+    position: absolute;
+    right: 0;
+    top: 50px;
+}
+
+.qyt-btn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.qyt-btn .minus {
+    border: 1px;
+    border-color: black;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.qyt-btn .plus {
+    border: 1px;
+    border-color: black;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.list ul.items li.item .description .title {
+    margin: 0px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.list ul.items li.item .description p {
+    font-size: 12px;
+    color: #acb4ba;
+    margin: 0px;
+}
+
+.content {
+    width: 85%;
+    background: white;
+    box-shadow: 0px 1px 5px 0px #e7e8e8;
+    margin-left: 150px;
+}
+
+
+
+.form-content{
+    position: absolute;
+    left: 35%;
+    /* border: 1px solid red; */
+    width: 500px;
+}
+
+.form{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-left: 100px; */
+}
+.form input{
+    width: 300px;
+    height: 40px;
+    border: 1px solid #e7e8e8;
+    border-radius: 20px;
+    padding: 0px 10px;
+    margin: 10px 0px;
+}
+
+.btn-add{
+    width: 300px;
+    height: 40px;
+    border: 1px solid #e7e8e8;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    background: #5ba2e4;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-ref{
+    width: 300px;
+    height: 40px;
+    border: 1px solid #e7e8e8;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 10px 0px;
+    background: #5ba2e4;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
