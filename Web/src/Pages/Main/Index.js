@@ -60,9 +60,9 @@ function Main() {
       const obj = await net.executeAsync(expanded);
       // console.log(obj)
 
-      const boxes = await obj[5].array();
-      const classes = await obj[3].array();
-      const scores = await obj[2].array();
+      const boxes = await obj[2].array();
+      const classes = await obj[0].array();
+      const scores = await obj[6].array();
       
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
