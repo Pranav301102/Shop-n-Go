@@ -2,7 +2,11 @@
 import React, { useRef, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
+
+const config ={
+  backendLocation: "http://127.0.0.1:8085"
+}
 
 const userData = {
   name: "",
@@ -47,10 +51,10 @@ function Overlay() {
       console.log("password matched");
       if (name && email && address && password && Confirmpassword) {
         // axios sign up
-        // axios.post(`${config.backendLocation}/auth/register`, {email, password, phone:address, username:name}).then((res) => {
-        //   window.location = "/verify?username="+name;
-        //   setForm(userData);
-        // });
+        axios.post(`${config.backendLocation}/auth/register`, {email, password, phone:address, username:name}).then((res) => {
+          window.location = "/verify?username="+name;
+          setForm(userData);
+        });
       }
     } else {
       alert("password not matched");
@@ -78,23 +82,23 @@ function Overlay() {
     const email = signinData.emailID;
     const password = signinData.passwordID;
     console.log({ email, password });
-    // if (email && password) {
-    // 	// axios sign in
-    // 	axios
-    // 		.post(`${config.backendLocation}/auth/login`, {
-    // 			email,
-    // 			password,
-    // 		})
-    // 		.then((res) => {
-    // 			console.log(res.data);
-    // 			if (res.data.token) {
-    // 				localStorage.setItem("token", res.data.token);
-    // 				window.location = "/";
-    // 			} else {
-    // 				alert("Invalid Credentials");
-    // 			}
-    // 		});
-    // }
+    if (email && password) {
+    	// axios sign in
+    	axios
+    		.post(`${config.backendLocation}/auth/login`, {
+    			email,
+    			password,
+    		})
+    		.then((res) => {
+    			console.log(res.data);
+    			if (res.data.token) {
+    				localStorage.setItem("token", res.data.token);
+    				window.location = "/";
+    			} else {
+    				alert("Invalid Credentials");
+    			}
+    		});
+    }
   };
 
   return (

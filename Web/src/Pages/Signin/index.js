@@ -35,32 +35,7 @@ function Overlay() {
     });
   };
 
-  const handlerSubmit = async (e) => {
-    e.preventDefault();
-    console.log("sign up");
-    console.log(formData);
-    const { name, email, address, password, Confirmpassword } = formData;
-    if (
-      formData.Confirmpassword === formData.password &&
-      formData.password !== ""
-    ) {
-      console.log("password matched");
-      if (name && email && address && password && Confirmpassword) {
-        // axios sign up
-        axios.post(`http://127.0.0.1:8085/api/auth/users`, { "name" :email, "password" : password}).then((res) => {
-          navigate("/signin");
-          alert("User Created");
-          setForm(userData);
-        });
-      }
-    } else {
-      alert("password not matched");
-    }
-  };
 
-  const handlerImg = (e) => {
-    setpanImg(e.target.files[0]);
-  };
 
   const handleSignin = (e) => {
     const { name, value } = e.target;
