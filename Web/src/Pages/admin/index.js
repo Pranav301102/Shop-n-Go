@@ -33,10 +33,6 @@ const Admin = () => {
       timeleft -= 1;
     }, 1000);
   }
-  console.log("access token", state.accessToken);
-
-
-
 
   return (
     <>
@@ -70,7 +66,7 @@ const Admin = () => {
                 Name={item.Prod_Name}
                 Quantity={item.Prod_Qty}
                 Price={item.Prod_Price}
-                Img={item.Prod_Img}
+                Img={item.Prod_Image}
                 Token={state.accessToken}
               />
             );
@@ -105,6 +101,8 @@ function NewProd({ Token }) {
     window.location.reload();
   }
 
+//CREATE NEW PRODUCT
+
   async function createProd() {
     const res = await axios.post(`http://127.0.0.1:8085/api/productManagement/create_new_product`,
       { Prod_Name: name, Prod_Qty: quantity, Prod_Price: price, Prod_Image: img },
@@ -133,7 +131,9 @@ function NewProd({ Token }) {
   )
 }
 
-function Product({ Name, Quantity, Price, Img, ID, Token }) {
+
+
+function Product({ Name, Quantity, Price, Img ,ID,Token}) {
   const [newPrice, setNewPrice] = React.useState(Price);
   const [newQuantity, setNewQuantity] = React.useState(Quantity);
   const [newImg, setNewImg] = React.useState(Img);
@@ -169,6 +169,7 @@ function Product({ Name, Quantity, Price, Img, ID, Token }) {
       })
     console.log(res);
   }
+  console.log(Img)
 
   return (
     <>
@@ -176,7 +177,7 @@ function Product({ Name, Quantity, Price, Img, ID, Token }) {
         <div>
           <img src={Img} alt="Product Image" />
         </div>
-        <h3>{Name}</h3>
+        <h3>{Name}a</h3>
         <h4>ID={ID}</h4>
         <div className="_p-qty">
           <p>Quantity: </p>
