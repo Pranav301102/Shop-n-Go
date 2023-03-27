@@ -32,10 +32,10 @@ const  Admin = () => {
       timeleft -=1;
   }, 1000);
   }
-  console.log("access token",state.accessToken);
+  console.log(data)
   
 
-  
+  //ADMIN PROFILE
 
   return (
     <>
@@ -69,7 +69,7 @@ const  Admin = () => {
                 Name={item.Prod_Name}
                 Quantity={item.Prod_Qty}
                 Price={item.Prod_Price}
-                Img={item.Prod_Img}
+                Img={item.Prod_Image}
                 Token={state.accessToken}
               />
             );
@@ -98,6 +98,8 @@ function NewProd({Token}){
     window.location.reload();
 }
 
+//CREATE NEW PRODUCT
+
   async function createProd() {
     const res = await axios.post(`http://127.0.0.1:8085/api/productManagement/create_new_product`,
     {Prod_Name: name, Prod_Qty: quantity, Prod_Price: price, Prod_Image: img},
@@ -124,6 +126,8 @@ function NewProd({Token}){
   )
 }
 
+//UPDATE PRODUCTS
+
 function Product({ Name, Quantity, Price, Img ,ID,Token}) {
   const [newPrice, setNewPrice] = React.useState(Price);
   const [newQuantity, setNewQuantity] = React.useState(Quantity);
@@ -142,7 +146,7 @@ function Product({ Name, Quantity, Price, Img ,ID,Token}) {
     setNewPrice(newPrice - 1);
   }
 
-  async function  UpdateData() {
+  async function UpdateData() {
     const res = await axios.post(`http://127.0.0.1:8085/api/productManagement/updateProduct`,
     {Prod_ID: ID,  Prod_Qty: newQuantity, Prod_Price: newPrice},
     {
@@ -152,7 +156,7 @@ function Product({ Name, Quantity, Price, Img ,ID,Token}) {
     console.log(res);
   }
 
-  async function  DeleteData() {
+  async function DeleteData() {
     const res = await axios.post(`http:////127.0.0.1:8085/api/productManagement/deleteProduct`,
     {Prod_ID: ID},
     {
@@ -160,6 +164,7 @@ function Product({ Name, Quantity, Price, Img ,ID,Token}) {
     })
     console.log(res);
   }
+  console.log(Img)
 
   return (
     <>
@@ -167,7 +172,7 @@ function Product({ Name, Quantity, Price, Img ,ID,Token}) {
         <div>
           <img src={Img} alt="Product Image" />
         </div>
-        <h3>{Name}</h3>
+        <h3>{Name}a</h3>
         <h4>ID={ID}</h4>
         <div className="_p-qty">
           <p>Quantity: </p>
