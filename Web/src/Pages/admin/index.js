@@ -18,16 +18,16 @@ const  Admin = () => {
   },[]);
   if (state == null){
     timer();
-    return(<div><p><CenterID>Login First, redirecting in<div id="countdown"></div></CenterID><Btn onClick={() =>navigate('/signin')}> Sign In </Btn>{" "}</p></div>);
+    return(<div><p><CenterID>Login First, redirecting in <div id="countdown" > </div></CenterID></p></div>);
   }
 
   function timer(){
     var timeleft = 2;
     window.setInterval(function(){
-      if(timeleft <=0){
+      if(timeleft == 0){
         window.location.href = "http://localhost:3000/signin";
       } else {
-        document.getElementById("countdown").innerHTML =timeleft + " seconds...";
+        document.getElementById("countdown").innerHTML =timeleft+1 ;
       }
       timeleft -=1;
   }, 1000);

@@ -1,8 +1,8 @@
 module.exports = {
-  HOST: "sql12.freemysqlhosting.net",
-  USER: "sql12607094",
-  PASSWORD: "I1TsxfIW2r",
-  DB: "sql12607094",
+  HOST: "aryansdomain.com",
+  USER: "root",
+  PASSWORD: "ember@2023",
+  DB: "ShopnGo",
   dialect: "mysql",
   port : 3306,
   pool: {

@@ -1,4 +1,5 @@
-use sql12607094;
+CREATE DATABASE ShopnGo;
+use ShopnGo;
 CREATE TABLE users (
     User_ID int,
     User_Name varchar(255),
@@ -10,9 +11,9 @@ CREATE TABLE users (
 
 
 
-use sql12607094;
+use ShopnGo;
 CREATE TABLE products (
-    Prod_ID int PRIMARY KEY NOT NULL UNIQUE,
+    Prod_ID int,
     Prod_Name varchar(255),
 	Prod_Price int,
     Prod_Qty int,
@@ -20,4 +21,10 @@ CREATE TABLE products (
 );
 
 ALTER TABLE products
+ADD CONSTRAINT PRIMARY KEY(Prod_ID);
+
+ALTER TABLE products
 ADD CONSTRAINT NOT NULL(Prod_ID);
+
+ALTER TABLE products
+ADD CONSTRAINT UNIQUE(Prod_ID);
