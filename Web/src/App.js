@@ -18,10 +18,10 @@ import Background from "./Components/Background";
 import Loader from "./Components/Loader";
 
 import Main from "./Pages/Main/Index";
-import Home from "./Pages/Home/index";
-import Scan from "./Pages/Scan";
-import Payment from "./Pages/Payment";
-import SignUp from "./Pages/Signup/index";
+import Home from "./Pages/home/index";
+import Scan from "./Pages/scan";
+import Payment from "./Pages/payment";
+import SignUp from "./Pages/signup/index";
 import SignIn from "./Pages/Signin/index";
 import Login from "./Pages/login/index";
 import Admin from "./Pages/admin";
