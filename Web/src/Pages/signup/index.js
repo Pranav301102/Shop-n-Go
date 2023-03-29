@@ -174,7 +174,7 @@ const Main = styled.main`
 `;
 
 const Container = styled.div`
-  border-radius: 10px;
+  border-radius: 100px;
   overflow: hidden;
   position: relative;
   backdrop-filter: blur(10px);
@@ -182,8 +182,8 @@ const Container = styled.div`
   width: 100%;
   max-width: 1128px;
   height: 600px;
-  margin: 0 auto;
-  margin-top: 80px;
+  margin: auto;
+  margin-top: 8px;
 `;
 
 const Left = styled.div`

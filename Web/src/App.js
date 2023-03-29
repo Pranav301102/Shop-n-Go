@@ -63,13 +63,18 @@ const AppContainer = styled.div`
   align-items: center;
   overflow-x: hidden;
   overflow-y: hidden;
+  caret-color: transparent;
   & > header {
     min-height: 8vh;
     width: 100%;
     z-index: 2000;
+   caret-color: transparent;
+
   }
   & > main {
-    width: 100%;
-    min-height: 92vh;
+    width: 100vw;
+    max-height: 100vh;
+   caret-color: transparent;
+
   }
 `;

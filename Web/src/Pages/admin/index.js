@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
-import  axios  from 'axios';
+import  axios  from 'axios';  
 import AllProd from './../Cart/AllProd';
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +18,7 @@ const  Admin = () => {
   },[]);
   if (state == null){
     timer();
-    return(<div><p><CenterID>Login First, redirecting in <div id="countdown" > </div></CenterID></p></div>);
+    return(<div><p><CenterID>Login First, redirecting in :  <div id="countdown" > </div></CenterID></p></div>);
   }
 
   function timer(){
@@ -290,6 +290,7 @@ const CenterID = styled.div`
   font-weight: bold;
   font-size: 3vw;
   padding-top : 25vh;
+  color : #3A3B3C;
 `;
 
 const Btn = styled.div`

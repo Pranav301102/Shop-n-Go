@@ -32,13 +32,13 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <ul>
+            {/* <ul>
               <li>
                 <Link className="link" to={"/main"}>
                   Main
                 </Link>
               </li>
-            </ul>
+            </ul> */}
             <ul>
               <li>
                 <Link className="link" to={"/main"}>
@@ -46,13 +46,13 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <ul>
+            {/* <ul>
               <li>
                 <Link className="link" to={"/payment"}>
                   Payment
                 </Link>
               </li>
-            </ul>
+            </ul> */}
             <ul>
               <li>
                 <Link className="link" to={"/cart"}>
@@ -97,6 +97,8 @@ const NavContainer = styled.nav`
       ul {
         list-style: none;
         font-size: 1rem;
+        caret-color: transparent;
+        
         li {
           .link {
             color: inherit;
