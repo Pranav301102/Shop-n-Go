@@ -32,6 +32,7 @@ function Main() {
 
   const detect = async (net) => {
     // Check data is available
+    try{
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null &&
@@ -89,6 +90,9 @@ function Main() {
       tf.dispose(expanded);
       tf.dispose(obj);
     }
+  }catch(err){
+    console.log(err)
+  }
   };
 
   useEffect(() => {
@@ -103,6 +107,7 @@ function Main() {
 
   const addProductsToCart = () => {
     setProduct([...product, { name, quantity, price, id }]);
+    console.log("prods",product)
   }
 
   const inc = () => {

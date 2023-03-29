@@ -1,12 +1,43 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import  axios  from 'axios';
+import QRCode from "react-qr-code";
+
+
+// QRCode.toCanvas(canvas, 'sample text', function (error) {
+//   if (error) console.error(error)
+//   console.log('success!');
+// })
+
 const Payment = () => {
   const {state} = useLocation();
-  //console.log("payment",state.state);
-  const data = state.state;
-  console.log(data);
+  const [paymentData,setPaymentData] = useState(0)
+  const [dataUPI,setUPI] = useState("")
+  const data = state.state[0].price;
+  console.log("here",state.state.length);
+
+  useEffect(()=>{
+    // if (state){
+    //  for(let i=0;i<state.state.length;i++){
+    //     setPaymentData(paymentData + state.state[i].price)
+    //  }}
+    if(state){
+      setPaymentData(state.price)
+    }
+
+  },[state])
+
+  useEffect(()=>{
+    setUPI(`upi://pay?pa=sdhanawade558@okicici&pn=SwayamDhanawade&am=${paymentData.toFixed(2)}&cu=INR&aid=uGICAgMDgqPSDDA`)
+
+  },[paymentData])
+  // generateQR();
+  // function generateQR() {
+  //   QRCode.toString('I am a pony!',{type:'terminal'}, function (err, url) {
+  //     console.log(url)
+  //   })
+  // }
 
   function updateData(){
     var i = 0;
@@ -16,7 +47,6 @@ const Payment = () => {
   }
 
   function updateQuantity(id, quantity) {
-    console.log("update quantity");
     axios.post(`http://127.0.0.1:8085/api/productManagement/update_product_sold`,
     {
       "Prod_ID": id,
@@ -84,7 +114,7 @@ const Payment = () => {
             })}
           </div>
           <form>
-            <div>
+            {/* <div>
               <div>
                 <label for="cardNumber">Card Number</label>
                 <input
@@ -132,7 +162,7 @@ const Payment = () => {
                   onChange={(e) => setCvvNumber(e.target.value)}
                 />
               </div>
-            </div>
+            </div> */}
 
             <input type="submit" value="Submit" />
           </form>
@@ -140,16 +170,30 @@ const Payment = () => {
         <section>
           <div>
             <p>Subtotal</p>
-            <p>{state.price}</p>
+            <p>{paymentData}</p>
           </div>
           <button onClick={updateData}>Pay and Checkout</button>
         </section>
       </article>
+      <div style={{ background: 'white', padding: '16px' }}>
+      <QRCode
+        size={256}
+        style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+        value={dataUPI}
+        viewBox={`0 0 256 256`}
+    />
+      </div>
     </PaymentContainer>
   );
 };
 
 export default Payment;
+
+const qrdiv = styled.section`
+  width:160px;
+  height:160px;
+  margin-top:15px;
+`
 
 const PaymentContainer = styled.section`
   width: 100%;
