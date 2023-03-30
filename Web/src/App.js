@@ -26,6 +26,8 @@ import SignIn from "./Pages/Signin/index";
 import Login from "./Pages/login/index";
 import Admin from "./Pages/admin";
 import AllProd from "./Pages/Cart/AllProd";
+import PaymentSuccessful from "./Pages/PaymentSuccessful";
+import PaymentFailed from "./Pages/PaymentFailed";
 function App() {
   return (
     <AppContainer>
@@ -45,6 +47,8 @@ function App() {
               <Route path="/payment" element={<Payment />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/cart" element={<AllProd />} />
+              <Route path="/paymentSuccessful" element={<PaymentSuccessful />} />
+              <Route path="/paymentFailed" element={<PaymentFailed />} />
             </Routes>
           </Suspense>
         </Router>

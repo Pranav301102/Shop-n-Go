@@ -4,6 +4,8 @@ const cors=require("cors");
 var Sequelize = require("sequelize");
 var brandManagement = require("./routes/productManagement");
 var authenticate = require("./routes/auth");
+var razorpay = require("./routes/razorpay")
+const Razorpay = require("razorpay");
 const app = express(); 
 const PORT = 8085;
 const corsOptions ={
@@ -34,5 +36,12 @@ app.get("/", function (request, response) {
 app.use("/api/productManagement", brandManagement);
 app.use("/api/auth", authenticate);
 
+//Razorpay
+app.use("/api/razorpay", razorpay)
+
 app.listen(PORT);
 console.log("server is running on http://127.0.0.1:" + PORT);
+
+
+
+
