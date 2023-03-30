@@ -17,13 +17,13 @@ import Navbar from "./Components/Navbar";
 import Background from "./Components/Background";
 import Loader from "./Components/Loader";
 
-import Main from "./Pages/Main/Index";
-import Home from "./Pages/home/index";
-import Scan from "./Pages/scan";
-import Payment from "./Pages/payment";
-import SignUp from "./Pages/signup/index";
-import SignIn from "./Pages/Signin/index";
-import Login from "./Pages/login/index";
+import Main from "./Pages/Main";
+import Home from "./Pages/Home";
+import Scan from "./Pages/Scan";
+import Payment from "./Pages/Payment";
+import SignUp from "./Pages/Signup";
+import SignIn from "./Pages/Signin";
+import Login from "./Pages/login";
 import Admin from "./Pages/admin";
 import AllProd from "./Pages/Cart/AllProd";
 function App() {

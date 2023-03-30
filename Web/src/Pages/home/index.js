@@ -30,7 +30,6 @@ export default Home;
 
 const HomeContainer = styled.main`
   position: relative;
-  overflow-y: none;
   width: 100%;
   display: grid;
   place-items: center;

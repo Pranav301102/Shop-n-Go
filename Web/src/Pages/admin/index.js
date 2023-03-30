@@ -222,6 +222,13 @@ function Product({ Name, Quantity, Price, Img ,ID,Token}) {
   );
 }
 
+
+
+const Container = styled.div`
+  width: 100%;
+  overflow-y:scroll ;
+  `
+
 const Prod = styled.div`
   width: 200px;
   display: flex;
