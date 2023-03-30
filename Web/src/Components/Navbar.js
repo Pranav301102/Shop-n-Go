@@ -32,13 +32,13 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <ul>
+            {/* <ul>
               <li>
                 <Link className="link" to={"/main"}>
                   Main
                 </Link>
               </li>
-            </ul>
+            </ul> */}
             <ul>
               <li>
                 <Link className="link" to={"/main"}>
@@ -46,13 +46,13 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <ul>
+            {/* <ul>
               <li>
                 <Link className="link" to={"/payment"}>
                   Payment
                 </Link>
               </li>
-            </ul>
+            </ul> */}
             <ul>
               <li>
                 <Link className="link" to={"/cart"}>
