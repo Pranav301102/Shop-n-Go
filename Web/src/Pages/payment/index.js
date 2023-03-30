@@ -2,7 +2,7 @@ import React, { useState ,useEffect} from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import  axios  from 'axios';
-import QRCode from "react-qr-code";
+
 
 
 // QRCode.toCanvas(canvas, 'sample text', function (error) {
@@ -28,16 +28,16 @@ const Payment = () => {
 
   },[state])
 
-  useEffect(()=>{
-    setUPI(`upi://pay?pa=sdhanawade558@okicici&pn=SwayamDhanawade&am=${paymentData.toFixed(2)}&cu=INR&aid=uGICAgMDgqPSDDA`)
+  // useEffect(()=>{
+  //   setUPI(`upi://pay?pa=sdhanawade558@okicici&pn=SwayamDhanawade&am=${paymentData.toFixed(2)}&cu=INR&aid=uGICAgMDgqPSDDA`)
 
-  },[paymentData])
-  generateQR();
-  function generateQR() {
-    QRCode.toString('I am a pony!',{type:'terminal'}, function (err, url) {
-      console.log(url)
-    })
-  }
+  // },[paymentData])
+  // generateQR();
+  // function generateQR() {
+  //   QRCode.toString('I am a pony!',{type:'terminal'}, function (err, url) {
+  //     console.log(url)
+  //   })
+  // }
 
   //RAZORPAY STUFF
 

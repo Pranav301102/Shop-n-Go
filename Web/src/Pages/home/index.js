@@ -1,6 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Canvas, useFrame } from '@react-three/fiber';
+import { PresentationControls ,RandomizedLight} from '@react-three/drei';
+import { Tokyo}  from "../../Components/LittlestTokyo";
+import { lerp } from "three/src/math/MathUtils";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,7 +25,9 @@ const Home = () => {
         <button onClick={handleStartButtonClick}>Start</button>
       </section>
       <section className="banner">
-        <div></div>
+        <Canvas camera={{ position: [1, 1.5, 580] }} >
+          <Model />
+        </Canvas>
       </section>
     </HomeContainer>
   );
@@ -28,9 +35,36 @@ const Home = () => {
 
 export default Home;
 
+function Model() {
+  const ref = React.useRef()
+  //move camera with mouse  
+  useFrame((state) => {
+    // console.log(state.mouse.x, state.mouse.y)
+    ref.current.rotation.y = lerp(ref.current.rotation.y, state.mouse.x * 0.5, 0.1)
+    ref.current.rotation.x = lerp(ref.current.rotation.x, state.mouse.y * 0.08, 0.1)
+    // ref.current.rotation.x = state.mouse.y * 0.1
+  })
+  return (
+    <PresentationControls
+    global
+    zoom={0.8}
+    rotation={[0, -Math.PI / 4, 0]}
+    polar={[0, Math.PI / 4]}
+    azimuth={[-Math.PI / 4, Math.PI / 4]}>
+    <group ref={ref}>
+    <ambientLight intensity={1} />
+      <RandomizedLight radius={20} amount={8}  position={[400, -200, 300]} />
+      {/* <RandomizedLight  amount={8}  position={[5, -500, -600]} /> */}
+      <Tokyo />
+    </group>
+    </PresentationControls>
+
+  )
+}
+
 const HomeContainer = styled.main`
   position: relative;
-  overflow-y: none;
+  /* overflow-y: none; */
   width: 100%;
   display: grid;
   place-items: center;
@@ -38,7 +72,7 @@ const HomeContainer = styled.main`
   padding: 0 10rem;
   overflow: hidden;
   & .desc {
-    padding: 0 40% 0 0;
+    padding: 0 50% 0 0;
     display: flex;
     flex-direction: column;
     text-align: justify;
@@ -65,16 +99,16 @@ const HomeContainer = styled.main`
   }
   & .banner {
     position: relative;
-    width: 100%;
+    width: 120%;
     height: 92vh;
     overflow-y: hidden;
-    background: url("/bg-banner.webp");
-    border-radius: 100% 0% 100% 0% / 100% 100% 0% 0%;
-    background-color: var(--bg-blue);
-    background-repeat: no-repeat;
-    background-size: 80%;
+    /* background: url("/bg-banner.webp");
+    border-radius: 100% 0% 100% 0% / 100% 100% 0% 0%; */
+    /* background-color: var(--bg-blue); */
+    /* background-repeat: no-repeat; */
+    /* background-size: 80%; */
     background-position: center;
-    & div {
+    /* & div {
       position: absolute;
       bottom: 0%;
       left: 10%;
@@ -84,7 +118,7 @@ const HomeContainer = styled.main`
       height: 10vh;
       width: 10vh;
       background-color: white;
-    }
+    } */
   }
   @media (max-width: 768px) {
     display: flex;
