@@ -74,6 +74,6 @@ const AppContainer = styled.div`
   }
   & > main {
     width: 100%;
-    min-height: 92vh;
+    
   }
 `;
