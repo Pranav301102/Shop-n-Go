@@ -5,7 +5,6 @@ import * as tf from "@tensorflow/tfjs";
 // e.g. import * as tfmodel from "@tensorflow-models/tfmodel";
 import Webcam from "react-webcam";
 import "./Index.css";
-import './style.css'
 import { model } from "@tensorflow/tfjs";
 // 2. TODO - Import drawing utility here
 // e.g. import { drawRect } from "./utilities";

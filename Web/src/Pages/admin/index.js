@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
-import  axios  from 'axios';
+import  axios  from 'axios';  
 import AllProd from './../Cart/AllProd';
 import { useNavigate } from "react-router-dom";
 import './index.css'
@@ -19,16 +19,16 @@ const  Admin = () => {
   },[]);
   if (state == null){
     timer();
-    return(<div><p><CenterID>Login First, redirecting in<div id="countdown"></div></CenterID><Btn onClick={() =>navigate('/signin')}> Sign In </Btn>{" "}</p></div>);
+    return(<div><p><CenterID>Login First, redirecting in :  <div id="countdown" > </div></CenterID></p></div>);
   }
 
   function timer(){
     var timeleft = 2;
     window.setInterval(function(){
-      if(timeleft <=0){
+      if(timeleft == 0){
         window.location.href = "http://localhost:3000/signin";
       } else {
-        document.getElementById("countdown").innerHTML =timeleft + " seconds...";
+        document.getElementById("countdown").innerHTML =timeleft+1 ;
       }
       timeleft -=1;
   }, 1000);
@@ -227,6 +227,13 @@ function Product({ Name, Quantity, Price, Img ,ID,Token}) {
   );
 }
 
+
+
+const Container = styled.div`
+  width: 100%;
+  overflow-y:scroll ;
+  `
+
 const Prod = styled.div`
   width: 200px;
   display: flex;
@@ -295,6 +302,7 @@ const CenterID = styled.div`
   font-weight: bold;
   font-size: 3vw;
   padding-top : 25vh;
+  color : #3A3B3C;
 `;
 
 const Btn = styled.div`

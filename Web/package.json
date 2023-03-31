@@ -20,6 +20,7 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.8.1",
     "react-scripts": "3.4.3",
+    "react-three-fiber": "^6.0.13",
     "react-webcam": "^5.2.0",
     "styled-components": "^5.3.9",
     "three": "^0.151.0"

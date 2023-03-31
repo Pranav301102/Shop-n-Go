@@ -97,6 +97,8 @@ const NavContainer = styled.nav`
       ul {
         list-style: none;
         font-size: 1rem;
+        caret-color: transparent;
+        
         li {
           .link {
             color: inherit;

@@ -17,6 +17,7 @@ import Navbar from "./Components/Navbar";
 import Background from "./Components/Background";
 import Loader from "./Components/Loader";
 
+
 import Main from "./Pages/Main/Index";
 import Home from "./Pages/Home";
 import Scan from "./Pages/Scan";
@@ -67,13 +68,18 @@ const AppContainer = styled.div`
   align-items: center;
   overflow-x: hidden;
   overflow-y: hidden;
+  caret-color: transparent;
   & > header {
     min-height: 8vh;
     width: 100%;
     z-index: 2000;
+   caret-color: transparent;
+
   }
   & > main {
+
     width: 100%;
     
+
   }
 `;
