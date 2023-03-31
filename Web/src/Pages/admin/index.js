@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import  axios  from 'axios';
 import AllProd from './../Cart/AllProd';
 import { useNavigate } from "react-router-dom";
+import './index.css'
 
 
 const  Admin = () => {
@@ -111,16 +112,20 @@ function NewProd({Token}){
     return(
     <>
     <div>
-      <h4>Name</h4>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      <h4>Quantity</h4>
-      <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-      <h4>Price</h4>
-      <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
-      <h4>Image</h4>
-      <input type="text" value={img} onChange={(e) => setImg(e.target.value)} />
-      <button onClick={createProd}>Add</button>
-      <button onClick={refreshPage}>Refresh</button>
+    <div className="form-content" >
+        <div className="form" >
+          <label>Name</label>
+          <input   type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <label>Quantity</label>
+          <input   type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+          <label>Price</label>
+          <input   type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+          <label>Image</label>
+          <input className="file" type="file" value={img} onChange={(e) => setImg(e.target.value)} />
+          <button className="btn-add" onClick={createProd}>Add</button>
+          <button className="btn-ref" onClick={refreshPage}>Refresh</button>
+        </div>
+      </div>
     </div>
     </>
   )
