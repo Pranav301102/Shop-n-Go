@@ -65,6 +65,9 @@ function authenticateToken(req, res, next) {
   })
 }
 
+
+
+
 // updating Prod_Sold in products table by adding the quantity of the product sold
 router.post("/update_product_sold",(request, response) => {
   //set headers

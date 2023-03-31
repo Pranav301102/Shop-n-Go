@@ -71,15 +71,22 @@ router.get("/fetch_users/:User_Token", async function (request, response) {
   try {
     const User_Token = request.params.User_Token;
     console.log(User_Token);
-    const userResult = await Users.findone({
+    //find user data
+    const userResult = await Users.findAll({
       where: { User_Token: User_Token},
     });
-    console.log(userResult);
     //check if result found
     if(userResult === null) {
       response.json("No User Found");
     } else {
-      response.json(userResult);
+      //only send USER_ID, USER_NAME, USER_EMAIL, USER_ADDRESS to client
+      let user = {
+        userId: userResult[0].User_ID,
+        userName: userResult[0].User_Name,
+        userEmail: userResult[0].User_Email,
+        userAddress: userResult[0].User_Address,
+      };
+      response.json(user);
     }
    } catch (ex) {
       response.json(ex);
@@ -96,6 +103,21 @@ router.get('/users', (req, res) => {
   }
   //res.json(users)
 })
+
+
+
+router.get('/users/:name', (req, res) => {
+  try {
+    Users.findOne({ where: { User_Name: req.params.name } }).then(function (users) {
+      res.json(users);
+    });
+  } catch (ex) {
+    res.json(ex);
+  }
+  //res.json(users)
+})
+
+
 
 router.post('/users', async (req, res) => {
     

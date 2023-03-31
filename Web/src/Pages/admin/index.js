@@ -9,6 +9,21 @@ import './index.css'
 
 const  Admin = () => {
   const { state } = useLocation();
+  const [user, setUser] = React.useState([]);
+  React.useEffect(() => {
+    console.log("here",user);
+  },[user]);
+  
+  //get user info from token
+  React.useEffect(() => {
+    console.log(state.refreshToken);
+      axios.get(`http://127.0.0.1:8085/api/auth//fetch_users/${state.refreshToken}`)
+      .then(res => {
+        console.log(res.data);
+        setUser(res.data);
+      }
+      )
+  },[state]);
   const [data, changeData] = React.useState([]);
   const navigate = useNavigate();
   React.useEffect(() => {
@@ -34,7 +49,7 @@ const  Admin = () => {
   }, 1000);
   }
   console.log(data)
-  
+
 
   //ADMIN PROFILE
 
@@ -49,12 +64,13 @@ const  Admin = () => {
           <div>
             <h3>Admin details</h3>
             <div>
-              <p>Email</p>
-              <p></p>
+              <h4>Name: {user.userName}</h4>
+              <h4>Email:{user.userEmail}</h4>
+              <h4>ID:{user.userId} </h4>
             </div>
             <div>
               <p>Contact</p>
-              <p>Lorem, ipsum dolor.</p>
+              <p>Address:{user.userAddress}</p>
             </div>
           </div>
         </section>
