@@ -31,6 +31,7 @@ function Main() {
 
   const detect = async (net) => {
     // Check data is available
+    try{
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null &&
@@ -59,9 +60,9 @@ function Main() {
       const obj = await net.executeAsync(expanded);
       // console.log(obj)
 
-      const boxes = await obj[5].array();
-      const classes = await obj[3].array();
-      const scores = await obj[2].array();
+      const boxes = await obj[2].array();
+      const classes = await obj[0].array();
+      const scores = await obj[6].array();
       
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
@@ -88,6 +89,9 @@ function Main() {
       tf.dispose(expanded);
       tf.dispose(obj);
     }
+  }catch(err){
+    console.log(err)
+  }
   };
 
   useEffect(() => {
@@ -102,6 +106,7 @@ function Main() {
 
   const addProductsToCart = () => {
     setProduct([...product, { name, quantity, price, id }]);
+    console.log("prods",product)
   }
 
   const inc = () => {

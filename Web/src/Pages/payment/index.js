@@ -1,13 +1,109 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import  axios  from 'axios';
+
+
+
+// QRCode.toCanvas(canvas, 'sample text', function (error) {
+//   if (error) console.error(error)
+//   console.log('success!');
+// })
+
 const Payment = () => {
   const {state} = useLocation();
-  //console.log("payment",state.state);
-  const data = state.state;
-  console.log(data);
+  const [paymentData,setPaymentData] = useState(0)
+  const [dataUPI,setUPI] = useState("")
+  const data = state.state[0].price;
+  console.log("here",state.state.length);
 
+  useEffect(()=>{
+    // if (state){
+    //  for(let i=0;i<state.state.length;i++){
+    //     setPaymentData(paymentData + state.state[i].price)
+    //  }}
+    if(state){
+      setPaymentData(state.price)
+    }
+
+  },[state])
+
+  // useEffect(()=>{
+  //   setUPI(`upi://pay?pa=sdhanawade558@okicici&pn=SwayamDhanawade&am=${paymentData.toFixed(2)}&cu=INR&aid=uGICAgMDgqPSDDA`)
+
+  // },[paymentData])
+  // generateQR();
+  // function generateQR() {
+  //   QRCode.toString('I am a pony!',{type:'terminal'}, function (err, url) {
+  //     console.log(url)
+  //   })
+  // }
+
+  //RAZORPAY STUFF
+
+  function loadScript(src) {
+    return new Promise((resolve) => {
+      const script = document.createElement('script')
+      script.src = src
+      script.onload = () => {
+        resolve(true)
+      }
+      script.onerror = () => {
+        resolve(false)
+      }
+      document.body.appendChild(script)
+    })
+  }
+
+  
+  async function displayRazorpay() {
+		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+
+		if (!res) {
+			alert('Razorpay SDK failed to load. Are you online?')
+			return
+		}
+    console.log(paymentData)
+    
+		const data = await fetch('http://127.0.0.1:8085/api/razorpay/razorpay'  , { 
+      method: 'POST' ,
+      body: JSON.stringify({
+        title: 'PaymentData',
+        amount: paymentData
+    }),
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+    }
+    }).then((t) =>
+			t.json()
+		)
+
+		console.log("payment",data)
+
+		const options = {
+			key: 'rzp_test_2CkeLoCVDvj5sX' ,
+			currency: data.currency,
+			amount: "3000",
+			order_id: data.id,
+			name: 'Shop & Go Payment',
+			description: 'Thank you for purchasing.',
+			image: '',
+			handler: function (response) {
+				alert(response.razorpay_payment_id)
+				alert(response.razorpay_order_id)
+				alert(response.razorpay_signature)
+			},
+			prefill: {
+				name: 'test name',
+				email: 'sdfdsjfh2@ndsfdf.com',
+				phone_number: '9899999999'
+			}
+		}
+		const paymentObject = new window.Razorpay(options)
+		paymentObject.open()
+	}
+
+  
   function updateData(){
     var i = 0;
     for(i in data){
@@ -16,7 +112,6 @@ const Payment = () => {
   }
 
   function updateQuantity(id, quantity) {
-    console.log("update quantity");
     axios.post(`http://127.0.0.1:8085/api/productManagement/update_product_sold`,
     {
       "Prod_ID": id,
@@ -84,7 +179,7 @@ const Payment = () => {
             })}
           </div>
           <form>
-            <div>
+            {/* <div>
               <div>
                 <label for="cardNumber">Card Number</label>
                 <input
@@ -132,7 +227,7 @@ const Payment = () => {
                   onChange={(e) => setCvvNumber(e.target.value)}
                 />
               </div>
-            </div>
+            </div> */}
 
             <input type="submit" value="Submit" />
           </form>
@@ -140,16 +235,33 @@ const Payment = () => {
         <section>
           <div>
             <p>Subtotal</p>
-            <p>{state.price}</p>
+            <p>{paymentData}</p>
           </div>
           <button onClick={updateData}>Pay and Checkout</button>
+          <br></br>
+          <button onClick={displayRazorpay}>Pay</button>
         </section>
       </article>
+      {/* <div style={{ background: 'white', padding: '16px' }}>
+      <QRCode
+        size={256}
+        style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+        value={dataUPI}
+        viewBox={`0 0 256 256`}
+    />
+      </div> */}
+      
     </PaymentContainer>
   );
 };
 
 export default Payment;
+
+const qrdiv = styled.section`
+  width:160px;
+  height:160px;
+  margin-top:15px;
+`
 
 const PaymentContainer = styled.section`
   width: 100%;
