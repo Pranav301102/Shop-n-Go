@@ -149,8 +149,6 @@ function Main() {
             }}
           />
           <div className="details" >
-            
-
             <div className="qyt">
               <p>Name:{name} </p>
               <p>Price: {price}</p>
@@ -164,7 +162,6 @@ function Main() {
                 </div>
               </div>
             </div>
-
             <div className="buttons" >
               <div className="AddBtn" >
                 <button class="btn-theme btn buy-btn" tabindex="0" onClick={() => { navigate("/cart", { state: product }); }}>
