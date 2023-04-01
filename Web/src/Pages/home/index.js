@@ -63,7 +63,7 @@ function Model() {
         <ambientLight intensity={1} />
         <RandomizedLight radius={20} amount={8} position={[400, -200, 300]} />
         {/* <RandomizedLight  amount={8}  position={[5, -500, -600]} /> */}
-        <Tokyo />
+        {/* <Tokyo /> */}
       </group>
     </PresentationControls>
   );
@@ -87,12 +87,12 @@ const HomeContainer = styled.main`
       font-size: 3rem;
       margin: 0;
     }
-    & button {
+    & > button {
       padding: 1rem;
       border-radius: 2rem;
       border: none;
       outline: none;
-      background: rgba(47, 114, 184, 0.8);
+      background: black;
       color: whitesmoke;
       font-size: large;
       font-weight: bold;

@@ -96,6 +96,7 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   padding: 0 4rem;
+  z-index: 1000;
   & .menu {
     font-size: 2rem;
 

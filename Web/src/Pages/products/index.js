@@ -31,7 +31,7 @@ const Products = () => {
   }
   return (
     <Container maxWidth="lg">
-      <Grid sx={{ py: "1.5rem" }} container>
+      <Grid sx={{ py: "1.5rem" }} container spacing={"1rem"}>
         {products?.map(
           ({
             Prod_Name: title,
@@ -39,7 +39,7 @@ const Products = () => {
             Prod_Image: image,
             Prod_Price: price,
           }) => (
-            <Grid item key={id} xs={12} sm={6} md={3} spacing={"1rem"}>
+            <Grid item key={id} xs={12} sm={6} md={3}>
               <Card
                 sx={{
                   height: "100%",

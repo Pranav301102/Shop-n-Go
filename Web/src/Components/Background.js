@@ -1,18 +1,9 @@
 import React from "react";
-//import { Gradient } from "../lib/gradient";
 import styled from "styled-components";
 import "../index.css";
 const Background = () => {
-  // useLayoutEffect(() => {
-  //   const gradient = new Gradient();
-  //   gradient.initGradient("#gradient-canvas");
-  // }, []);
-
-  // const gradient = new Gradient();
-  // gradient.initGradient("#gradient-canvas");
   return (
     <BackgroundContainer>
-      {/* <canvas id="gradient-canvas" data-transition-in /> */}
       <svg
         id="sw-js-blob-svg"
         viewBox="0 0 100 100"
@@ -23,8 +14,8 @@ const Background = () => {
           {" "}
           <linearGradient id="sw-gradient" x1="0" x2="1" y1="1" y2="0">
             {" "}
-            <stop id="stop1" stop-color="whitesmoke" offset="0%"></stop>{" "}
-            <stop id="stop2" stop-color="whitesmoke" offset="100%"></stop>{" "}
+            <stop id="stop1" stop-color="skyblue" offset="0%"></stop>{" "}
+            <stop id="stop2" stop-color="skyblue" offset="100%"></stop>{" "}
           </linearGradient>{" "}
         </defs>{" "}
         <path
@@ -44,23 +35,14 @@ const Background = () => {
 export default Background;
 
 const BackgroundContainer = styled.article`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 100%;
-  height: 100vh;
   z-index: -1000;
   overflow: hidden;
   & svg {
     transform: translateX(-25vh) translateY(-30vh) scale(1.5);
     z-index: -1000;
   }
-  /* & > #gradient-canvas {
-    width: 100%;
-    height: 100%;
-    --gradient-color-1: #c3e4ff;
-    --gradient-color-2: #6ec3f4;
-    --gradient-color-3: #eae2ff;
-    --gradient-color-4: #b9beff;
-  } */
 `;

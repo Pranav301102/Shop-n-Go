@@ -61,7 +61,6 @@ const Cart = () => {
                     image={image}
                     sx={{
                       objectFit: "contain",
-                      padding: "1rem",
                       background: "white",
                     }}
                     alt={`${title} Image`}
@@ -71,6 +70,7 @@ const Cart = () => {
                       display: "grid",
                       placeItems: "flex-start",
                       alignItems: "center",
+                      marginLeft: "1rem",
                       gridTemplateColumns: "1fr minmax(100px,10%)",
                     }}
                   >
@@ -80,6 +80,7 @@ const Cart = () => {
                         justifyContent: "center",
                         flexDirection: "column",
                         gap: 2,
+                        width: "100%",
                       }}
                     >
                       <Typography
