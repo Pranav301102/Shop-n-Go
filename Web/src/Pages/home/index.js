@@ -1,11 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Canvas, useFrame } from '@react-three/fiber';
-import { PresentationControls ,RandomizedLight} from '@react-three/drei';
-import { Tokyo}  from "../../Components/LittlestTokyo";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { PresentationControls, RandomizedLight } from "@react-three/drei";
+import { Tokyo } from "../../Components/LittlestTokyo";
 import { lerp } from "three/src/math/MathUtils";
-
 
 const Home = () => {
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const Home = () => {
         <button onClick={handleStartButtonClick}>Start</button>
       </section>
       <section className="banner">
-        <Canvas camera={{ position: [1, 1.5, 580] }} >
+        <Canvas camera={{ position: [1, 1.5, 580] }}>
           <Model />
         </Canvas>
       </section>
@@ -36,30 +35,38 @@ const Home = () => {
 export default Home;
 
 function Model() {
-  const ref = React.useRef()
-  //move camera with mouse  
+  const ref = React.useRef();
+  //move camera with mouse
   useFrame((state) => {
     // console.log(state.mouse.x, state.mouse.y)
-    ref.current.rotation.y = lerp(ref.current.rotation.y, state.mouse.x * 0.5, 0.1)
-    ref.current.rotation.x = lerp(ref.current.rotation.x, state.mouse.y * 0.08, 0.1)
+    ref.current.rotation.y = lerp(
+      ref.current.rotation.y,
+      state.mouse.x * 0.5,
+      0.1
+    );
+    ref.current.rotation.x = lerp(
+      ref.current.rotation.x,
+      state.mouse.y * 0.08,
+      0.1
+    );
     // ref.current.rotation.x = state.mouse.y * 0.1
-  })
+  });
   return (
     <PresentationControls
-    global
-    zoom={0.8}
-    rotation={[0, -Math.PI / 4, 0]}
-    polar={[0, Math.PI / 4]}
-    azimuth={[-Math.PI / 4, Math.PI / 4]}>
-    <group ref={ref}>
-    <ambientLight intensity={1} />
-      <RandomizedLight radius={20} amount={8}  position={[400, -200, 300]} />
-      {/* <RandomizedLight  amount={8}  position={[5, -500, -600]} /> */}
-      <Tokyo />
-    </group>
+      global
+      zoom={0.8}
+      rotation={[0, -Math.PI / 4, 0]}
+      polar={[0, Math.PI / 4]}
+      azimuth={[-Math.PI / 4, Math.PI / 4]}
+    >
+      <group ref={ref}>
+        <ambientLight intensity={1} />
+        <RandomizedLight radius={20} amount={8} position={[400, -200, 300]} />
+        {/* <RandomizedLight  amount={8}  position={[5, -500, -600]} /> */}
+        <Tokyo />
+      </group>
     </PresentationControls>
-
-  )
+  );
 }
 
 const HomeContainer = styled.main`

@@ -17,44 +17,52 @@ import Navbar from "./Components/Navbar";
 import Background from "./Components/Background";
 import Loader from "./Components/Loader";
 
-
-import Main from "./Pages/Main/Index";
-import Home from "./Pages/Home";
-import Scan from "./Pages/Scan";
-import Payment from "./Pages/Payment";
-import SignUp from "./Pages/Signup";
-import SignIn from "./Pages/Signin";
+import Main from "./Pages/main/index";
+import Home from "./Pages/home/index";
+import Scan from "./Pages/scan/index";
+import Payment from "./Pages/payment/index";
+import SignUp from "./Pages/signup/index";
+import SignIn from "./Pages/Signin/index";
 import Login from "./Pages/login";
-import Admin from "./Pages/admin";
-import AllProd from "./Pages/Cart/AllProd";
-import PaymentSuccessful from "./Pages/PaymentSuccessful";
-import PaymentFailed from "./Pages/PaymentFailed";
+import Admin from "./Pages/admin/index";
+import Cart from "./Pages/Cart/index";
+import PaymentSuccessful from "./Pages/PaymentSuccessful/index";
+import PaymentFailed from "./Pages/PaymentFailed/index";
+import { Provider } from "react-redux";
+import store from "./store";
+import Products from "./Pages/products/index";
 function App() {
   return (
-    <AppContainer>
-      <Background />
-      <main>
-        <Router>
-          <header>
-            <Navbar />
-          </header>
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/signin" element={<SignIn />} />
-              <Route path="/main" element={<Main />} />
-              <Route path="/scan" element={<Scan />} />
-              <Route path="/payment" element={<Payment />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/cart" element={<AllProd />} />
-              <Route path="/paymentSuccessful" element={<PaymentSuccessful />} />
-              <Route path="/paymentFailed" element={<PaymentFailed />} />
-            </Routes>
-          </Suspense>
-        </Router>
-      </main>
-    </AppContainer>
+    <Provider store={store}>
+      <AppContainer>
+        <Background />
+        <main>
+          <Router>
+            <header>
+              <Navbar />
+            </header>
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/signin" element={<SignIn />} />
+                <Route path="/main" element={<Main />} />
+                <Route path="/scan" element={<Scan />} />
+                <Route path="/payment" element={<Payment />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/products" element={<Products />} />
+                <Route
+                  path="/paymentSuccessful"
+                  element={<PaymentSuccessful />}
+                />
+                <Route path="/paymentFailed" element={<PaymentFailed />} />
+              </Routes>
+            </Suspense>
+          </Router>
+        </main>
+      </AppContainer>
+    </Provider>
   );
 }
 
@@ -73,13 +81,9 @@ const AppContainer = styled.div`
     min-height: 8vh;
     width: 100%;
     z-index: 2000;
-   caret-color: transparent;
-
+    caret-color: transparent;
   }
   & > main {
-
     width: 100%;
-    
-
   }
 `;
