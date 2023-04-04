@@ -123,6 +123,7 @@
     left: 63%;
     top: 30%;
     width: 300px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -130,7 +131,10 @@
 }
 .qyt{
     text-align: right;
+    margin-top: -40px;
     margin-left: 20px;
+    margin-right: 180px;
+    
 }
 .qyt .p{
     font-size: 20px;
@@ -154,10 +158,10 @@
 }
 
 .buttons{
-    margin-top: 20px;
+    margin-top: 540px;
     margin-bottom: 20px;
 }
 .btn{
     border: 0px;
-    margin-right: 10px;
+    margin-right:10px;
 }

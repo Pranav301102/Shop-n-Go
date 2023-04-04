@@ -6,20 +6,18 @@ import { PresentationControls, RandomizedLight } from "@react-three/drei";
 import { Tokyo } from "../../Components/LittlestTokyo";
 import { lerp } from "three/src/math/MathUtils";
 
+
 const Home = () => {
   const navigate = useNavigate();
   const handleStartButtonClick = () => {
-    navigate("/scan");
+    navigate("/main");
   };
   return (
     <HomeContainer>
       <section className="desc">
         <h1>Shop & Go</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-          neque enim culpa non, voluptatem reprehenderit, officia minus iste in
-          tenetur vitae consectetur nemo ipsam nihil dicta, cupiditate quae
-          sequi? Corporis.
+          Self Checkout System for small shops
         </p>
         <button onClick={handleStartButtonClick}>Start</button>
       </section>
@@ -62,8 +60,8 @@ function Model() {
       <group ref={ref}>
         <ambientLight intensity={1} />
         <RandomizedLight radius={20} amount={8} position={[400, -200, 300]} />
-        {/* <RandomizedLight  amount={8}  position={[5, -500, -600]} /> */}
-        {/* <Tokyo /> */}
+        <RandomizedLight  amount={8}  position={[5, -500, -600]} />
+        <Tokyo />
       </group>
     </PresentationControls>
   );
@@ -109,12 +107,14 @@ const HomeContainer = styled.main`
     width: 120%;
     height: 92vh;
     overflow-y: hidden;
+    z-index:100;
     /* background: url("/bg-banner.webp");
     border-radius: 100% 0% 100% 0% / 100% 100% 0% 0%; */
     /* background-color: var(--bg-blue); */
     /* background-repeat: no-repeat; */
     /* background-size: 80%; */
     background-position: center;
+    
     /* & div {
       position: absolute;
       bottom: 0%;

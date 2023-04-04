@@ -17,7 +17,7 @@ import Navbar from "./Components/Navbar";
 import Background from "./Components/Background";
 import Loader from "./Components/Loader";
 
-import Main from "./Pages/main/index";
+import Main from "./Pages/Main";
 import Home from "./Pages/home/index";
 import Scan from "./Pages/scan/index";
 import Payment from "./Pages/payment/index";
@@ -25,7 +25,7 @@ import SignUp from "./Pages/signup/index";
 import SignIn from "./Pages/Signin/index";
 import Login from "./Pages/login";
 import Admin from "./Pages/admin/index";
-import Cart from "./Pages/Cart/index";
+import Cart from "./Pages/Cart/AllProd";
 import PaymentSuccessful from "./Pages/PaymentSuccessful/index";
 import PaymentFailed from "./Pages/PaymentFailed/index";
 import { Provider } from "react-redux";
